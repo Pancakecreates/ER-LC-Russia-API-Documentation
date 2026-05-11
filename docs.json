@@ -1,8 +1,9 @@
 {
-  "name": "Название твоего проекта",
+  "name": "Revolution-Roleplay",
+  "theme": "mint",
   "navigation": [
     {
-      "group": "Начало работы",
+      "group": "Начало",
       "pages": [
         "introduction"
       ]
