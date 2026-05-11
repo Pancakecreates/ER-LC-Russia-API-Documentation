@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "palm",
   "name": "Moscow RolePlay",
   "colors": {
     "primary": "#3b82f6",
@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "База знаний",
+        "tab": "Правила Сервера",
         "groups": [
           {
             "group": "Начало",
