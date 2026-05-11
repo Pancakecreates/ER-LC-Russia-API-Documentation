@@ -1,9 +1,5 @@
 {
   "name": "Revolution Roleplay",
-  "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
-  },
   "colors": {
     "primary": "#00FF00",
     "light": "#07C983",
@@ -11,7 +7,7 @@
   },
   "navigation": [
     {
-      "group": "Основное",
+      "group": "Начало",
       "pages": [
         "introduction"
       ]
