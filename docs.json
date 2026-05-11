@@ -63,14 +63,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Поддержка",
-        "href": "https://discord.gg/your-link"
+        "label": "API Поддержка",
+        "href": "https://discord.gg/MoscowRus"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Личный кабинет",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Вход",
+      "href": "https://erlcrussia.com/login"
     }
   },
   "contextual": {
