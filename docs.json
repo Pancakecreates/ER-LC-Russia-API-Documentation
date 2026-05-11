@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "palm",
-  "name": "Moscow RolePlay",
+  "name": "ER:LC Россия",
   "colors": {
-    "primary": "#5865f2",
-    "light": "#798df9",
-    "dark": "#5865f2"
+    "primary": "#02B1DA",
+    "light": "#02B1DA",
+    "dark": "#02B1DA"
   },
-  "favicon": "/favicon.png",
+  "favicon": {
+    "light": "/favicon.png",
+    "dark": "/favicon.png"
+  },
   "navigation": {
     "tabs": [
       {
@@ -58,7 +61,7 @@
   },
   "logo": {
     "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
+    "dark": "/logo/light.png"
   },
   "navbar": {
     "links": [
@@ -94,5 +97,8 @@
     "color": {
       "dark": "#1D1D1D"
     }
+  },
+  "banner": {
+    "content": "ER"
   }
 }
