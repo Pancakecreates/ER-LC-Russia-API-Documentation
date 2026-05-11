@@ -89,5 +89,10 @@
     "socials": {
       "github": "https://github.com/your-username"
     }
+  },
+  "background": {
+    "color": {
+      "dark": "#1D1D1D"
+    }
   }
 }
