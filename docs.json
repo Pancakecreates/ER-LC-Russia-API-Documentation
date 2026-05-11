@@ -1,10 +1,6 @@
 {
-  "name": "Revolution Roleplay",
-  "colors": {
-    "primary": "#00FF00",
-    "light": "#07C983",
-    "dark": "#063B27"
-  },
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Project Name",
   "navigation": [
     {
       "group": "Начало",
