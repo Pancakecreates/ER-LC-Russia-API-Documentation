@@ -102,8 +102,8 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/light.png"
+    "light": "/icons/Banner-ERLC-Russia-Docs-System.svg",
+    "dark": "/icons/Banner-ERLC-Russia-Docs-System.svg"
   },
   "navbar": {
     "links": [
@@ -223,5 +223,8 @@
     "playground": {
       "proxy": true
     }
+  },
+  "appearance": {
+    "default": "system"
   }
 }
