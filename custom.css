@@ -199,9 +199,10 @@ nav a[href*="discord.gg/MoscowRus"]:active {
 /* Только для логотипа с конкретным именем файла */
 #navbar .nav-logo[src*="Banner-ERLC-Russia-Docs-System.svg"] {
   height: 60px !important;
-  width: 177px !important;
+  width: 200px !important;
   max-height: none !important;
   object-fit: contain !important;
+  transform: translateX(-10px) !important;
 }
 
 /* Только для логотипа в ФУТЕРЕ */
