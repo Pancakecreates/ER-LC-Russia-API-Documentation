@@ -112,8 +112,68 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/your-username"
-    }
+      "youtube": "https://www.youtube.com/@erlcrussia",
+      "telegram": "https://t.me/erlcrussia",
+      "x": "https://x.com/erlcrussia",
+      "discord": "https://discord.gg/MoscowRus"
+    },
+    "links": [
+      {
+        "header": "ER:LC Россия",
+        "items": [
+          {
+            "label": "Вики",
+            "href": "https://wiki.erlcrussia.com/"
+          },
+          {
+            "label": "История Изменений",
+            "href": "https://wiki.erlcrussia.com/changelogs"
+          },
+          {
+            "label": "Правила Персонала",
+            "href": "https://wiki.erlcrussia.com/moscow-roleplay-staff-rules"
+          },
+          {
+            "label": "Начать Играть",
+            "href": "https://erlcrussia.com/join/moscowroleplay"
+          },
+          {
+            "label": "API",
+            "href": "/"
+          },
+          {
+            "label": "Статус",
+            "href": "https://status.erlcrussia.com"
+          }
+        ]
+      },
+      {
+        "header": "Продукты",
+        "items": [
+          {
+            "label": "Магазин",
+            "href": "https://erlcrussia.com/store"
+          },
+          {
+            "label": "Moscow RolePlay",
+            "href": "https://erlcrussia.com/moscowroleplay"
+          }
+        ]
+      },
+      {
+        "header": "Документы",
+        "items": [
+          {
+            "label": "Политика Конфиденциальности",
+            "href": "https://erlcrussia.com/privacy"
+          },
+          {
+            "label": "Условия Использования",
+            "href": "https://erlcrussia.com/terms"
+          }
+        ]
+      }
+    ]
   },
   "background": {
     "color": {
