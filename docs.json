@@ -135,9 +135,24 @@
       "discord": "https://discord.gg/MoscowRus",
       "x": "https://x.com/erlcrussia",
       "telegram": "https://t.me/erlcrussia",
-      "youtube": "https://www.youtube.com/@erlcrussia"
+      "youtube": "https://www.youtube.com/@erlcrussia",
+      "instagram": "https://www.tiktok.com/@erlcrussia",
+      "linkedin": "https://www.roblox.com/share/g/688514761"
     },
     "links": [
+      {
+        "header": " ",
+        "items": [
+          {
+            "label": " ",
+            "href": "https://erlcrussia.com/privacy"
+          },
+          {
+            "label": " ",
+            "href": "https://erlcrussia.com/terms"
+          }
+        ]
+      },
       {
         "header": "ER:LC Россия",
         "items": [
@@ -184,11 +199,11 @@
         "header": "Документы",
         "items": [
           {
-            "label": "Политика Конфиденциальности",
+            "label": "Приватность",
             "href": "https://erlcrussia.com/privacy"
           },
           {
-            "label": "Условия Использования",
+            "label": "Условия",
             "href": "https://erlcrussia.com/terms"
           }
         ]
