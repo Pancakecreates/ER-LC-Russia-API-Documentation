@@ -158,34 +158,34 @@ footer a[href*="roblox.com"]:hover::before {
 
 /* Основные стили для ссылок в navbar */
 nav a[href*="discord.gg/MoscowRus"] {
-  color: #ffffff !important;
+  color: rgb(80, 83, 81) !important;
   font-weight: 600 !important;
   text-decoration: none !important;
   padding: 8px 16px !important;
   border-radius: 12px !important;
   transition: all 0.2s ease !important;
   background: transparent !important;
-  border: 1px solid #ffffff !important;
+  border: 1px solid rgba(10, 13, 12, 0.1) !important;
   transform: translateX(10px) !important;
 }
 
 /* Эффект при наведении - светлая тема */
 nav a[href*="discord.gg/MoscowRus"]:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: #ffffff !important;
-  color: #f0f0f0 !important;
+  background: rgba(3, 7, 18, 0.04) !important;
+  border-color: rgba(10, 13, 12, 0.1) !important;
+  color: rgba(23, 26, 24) !important;
 }
 
 /* Темная тема */
 .dark nav a[href*="discord.gg/MoscowRus"] {
-  color: #ffffff !important;
+  color: rgb(206, 209, 207) !important;
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .dark nav a[href*="discord.gg/MoscowRus"]:hover {
   background: rgba(255, 255, 255, 0.05) !important;
   border-color: rgba(255, 255, 255, 0.1) !important;
-  color: #f0f0f0 !important;
+  color: rgb(243, 244, 246) !important;
 }
 
 /* Активное состояние */
@@ -210,4 +210,15 @@ footer img[src*="Banner-ERLC-Russia-Docs-System.svg"] {
   width: 192px !important;
   max-height: none !important;
   object-fit: contain !important;
+  transform: translateX(-10px) !important;
 }
+
+/* Скрываем контейнер с кнопками переключения тем только в футере
+/* footer [data-testid^="mode-switch-"] {
+  display: none !important;
+}*/ 
+
+/* Если кнопки обернуты в родительский div, который нужно убрать целиком */
+/* footer .flex.items-center.gap-2:has([data-testid^="mode-switch-"]) {
+  display: none !important;
+} */
