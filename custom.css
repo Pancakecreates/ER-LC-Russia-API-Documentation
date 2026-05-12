@@ -222,3 +222,71 @@ footer img[src*="Banner-ERLC-Russia-Docs-System.svg"] {
 /* footer .flex.items-center.gap-2:has([data-testid^="mode-switch-"]) {
   display: none !important;
 } */
+
+/* --- Скрытие элементов на странице введения --- */
+
+/* Скрываем eyebrow только на странице introduction */
+body[data-path*="introduction"] .eyebrow.h-5.text-primary,
+body[data-path*="introduction"] .eyebrow.h-5.text-primary-light,
+body[data-path*="introduction"] div.eyebrow,
+body[data-path*="introduction"] [class*="eyebrow"],
+html[data-path*="introduction"] .eyebrow.h-5.text-primary,
+html[data-path*="introduction"] .eyebrow.h-5.text-primary-light,
+html[data-path*="introduction"] div.eyebrow,
+html[data-path*="introduction"] [class*="eyebrow"] {
+  display: none !important;
+}
+
+/* Скрываем eyebrow по текстовому содержимому только на introduction */
+body[data-path*="introduction"] .eyebrow:contains("Начало"),
+body[data-path*="introduction"] div[class*="eyebrow"]:contains("Начало"),
+html[data-path*="introduction"] .eyebrow:contains("Начало"),
+html[data-path*="introduction"] div[class*="eyebrow"]:contains("Начало") {
+  display: none !important;
+}
+
+/* Скрываем кнопку копирования страницы только на introduction */
+body[data-path*="introduction"] #page-context-menu-button,
+body[data-path*="introduction"] button[id*="page-context-menu"],
+body[data-path*="introduction"] button[aria-label*="Копировать страницу"],
+body[data-path*="introduction"] button:has(span:contains("Копировать страницу")),
+html[data-path*="introduction"] #page-context-menu-button,
+html[data-path*="introduction"] button[id*="page-context-menu"],
+html[data-path*="introduction"] button[aria-label*="Копировать страницу"],
+html[data-path*="introduction"] button:has(span:contains("Копировать страницу")) {
+  display: none !important;
+}
+
+/* Скрываем кнопку дополнительных действий только на introduction */
+body[data-path*="introduction"] button[id^="radix-"],
+body[data-path*="introduction"] button[aria-label*="Дополнительные действия"],
+body[data-path*="introduction"] button:has(svg[viewBox="0 -9 3 24"]),
+html[data-path*="introduction"] button[id^="radix-"],
+html[data-path*="introduction"] button[aria-label*="Дополнительные действия"],
+html[data-path*="introduction"] button:has(svg[viewBox="0 -9 3 24"]) {
+  display: none !important;
+}
+
+/* Универсальные селекторы только для главной страницы */
+body[data-path="/"] .eyebrow,
+body[data-path="/"] #page-context-menu-button,
+body[data-path="/"] button[id^="radix-"],
+body[data-path="introduction"] .eyebrow,
+body[data-path="introduction"] #page-context-menu-button,
+body[data-path="introduction"] button[id^="radix-"] {
+  display: none !important;
+}
+
+/* Скрываем только на странице с заголовком ER:LC Россия API */
+body:has(h1:contains("ER:LC Россия API")) .eyebrow,
+body:has(h1:contains("ER:LC Россия API")) #page-context-menu-button,
+body:has(h1:contains("ER:LC Россия API")) button[id^="radix-"] {
+  display: none !important;
+}
+
+/* Скрываем только по наличию hero-banner */
+body:has(img[alt*="ER:LC Россия API"]) .eyebrow,
+body:has(img[alt*="ER:LC Россия API"]) #page-context-menu-button,
+body:has(img[alt*="ER:LC Россия API"]) button[id^="radix-"] {
+  display: none !important;
+}
