@@ -198,8 +198,8 @@ nav a[href*="discord.gg/MoscowRus"]:active {
 
 /* Только для логотипа с конкретным именем файла */
 #navbar .nav-logo[src*="Banner-ERLC-Russia-Docs-System.svg"] {
-  height: 48px !important;
-  width: 180px !important;
+  height: 60px !important;
+  width: 177px !important;
   max-height: none !important;
   object-fit: contain !important;
 }
