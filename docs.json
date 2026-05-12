@@ -26,7 +26,7 @@
         "language": "ru",
         "tabs": [
           {
-            "tab": "API",
+            "tab": "Информация и Правила",
             "groups": [
               {
                 "group": "Начало",
@@ -38,9 +38,7 @@
               {
                 "group": "API V1",
                 "pages": [
-                  "for-developers/api-v1/introduction",
-                  "for-developers/api-v1/mrp-erlc-api-v1",
-                  "for-developers/api-v1/mrp-stats-api-v1"
+                  "for-developers/api-v1/introduction"
                 ]
               },
               {
@@ -50,7 +48,6 @@
                   {
                     "group": "MRP ER:LC API V2",
                     "pages": [
-                      "for-developers/api-v2/mrp-erlc-api-v2/introduction",
                       "for-developers/api-v2/mrp-erlc-api-v2/erlc-location-information",
                       "for-developers/api-v2/mrp-erlc-api-v2/event-webhook"
                     ]
@@ -58,13 +55,9 @@
                   {
                     "group": "MRP API Экономики V2",
                     "pages": [
-                      "for-developers/api-v2/mrp-civops-api-v2/introduction",
-                      "for-developers/api-v2/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2",
-                      "for-developers/api-v2/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2"
+                      "for-developers/api-v2/mrp-civops-api-v2/introduction"
                     ]
-                  },
-                  "for-developers/api-v2/mrp-stats-api-v2",
-                  "for-developers/api-v2/cluecontrol-m-v2"
+                  }
                 ]
               },
               {
@@ -72,6 +65,33 @@
                 "pages": [
                   "for-developers/rate-limits",
                   "for-developers/error-codes"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Документация API",
+            "versions": [
+              {
+                "version": "API V1",
+                "pages": [
+                  "for-developers/api-v1/mrp-erlc-api-v1",
+                  "for-developers/api-v1/mrp-stats-api-v1"
+                ]
+              },
+              {
+                "version": "API V2",
+                "pages": [
+                  "for-developers/api-v2/mrp-erlc-api-v2/introduction",
+                  {
+                    "group": "MRP API Экономики V2",
+                    "pages": [
+                      "for-developers/api-v2/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2",
+                      "for-developers/api-v2/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2"
+                    ]
+                  },
+                  "for-developers/api-v2/mrp-stats-api-v2",
+                  "for-developers/api-v2/cluecontrol-m-v2"
                 ]
               }
             ]
