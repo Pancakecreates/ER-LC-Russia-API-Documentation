@@ -215,12 +215,6 @@
       "dark": "#1D1D1D"
     }
   },
-  "api": {
-    "openapi": "ru-erlc-v2-openapi.yaml",
-    "playground": {
-      "proxy": true
-    }
-  },
   "appearance": {
     "default": "system"
   }
