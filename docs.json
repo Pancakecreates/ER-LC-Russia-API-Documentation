@@ -82,19 +82,64 @@
               {
                 "version": "API V2",
                 "pages": [
-                  "api-reference/api-v2/mrp-erlc-api-v2",
                   {
-                    "group": "MRP ER:LC API V2",
-                    "openapi": "/openapi/ru-erlc-v2-openapi.yaml"
+                    "group": "Документация API V2",
+                    "icon": "/icons/rocket-icon.svg",
+                    "pages": [
+                      {
+                        "group": "MRP ER:LC API V2",
+                        "root": "api-reference/api-v2/mrp-erlc-api-v2",
+                        "icon": "/icons/race-car-icon.svg",
+                        "pages": [
+                          "api-reference/api-v2/mrp-erlc-api-v2/erlc-location-information",
+                          {
+                            "group": "Методы API",
+                            "icon": "/icons/tools-icon.svg",
+                            "pages": [
+                              "api/mrp-erlc-api-v2/get-moscowroleplay-erlc-server",
+                              "api/mrp-erlc-api-v2/post-moscowroleplay-erlc-server-command"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "MRP API Экономики V2",
+                        "root": "api-reference/api-v2/mrp-economy-api-v2",
+                        "icon": "/icons/dollar-icon.svg",
+                        "pages": [
+                          {
+                            "group": "GET-Эндпоинты API Экономики",
+                            "icon": "/icons/mag-icon.svg",
+                            "pages": [
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-economy",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-users",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-businesses",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-mafias",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-government",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-store",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-ads",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-system",
+                              "api/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-health"
+                            ]
+                          },
+                          {
+                            "group": "POST-Эндпоинты API Экономики",
+                            "icon": "/icons/incoming-envelope-icon.svg",
+                            "pages": [
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-economy",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-users",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-businesses",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-mafias",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-government",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-store",
+                              "api/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-ads"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
                   },
-                  {
-                    "group": "MRP API Экономики V2",
-                    "openapi": "openapi/ru-economy-v2-openapi.yaml"
-                  },
-                  "api-reference/api-v2/mrp-stats-api-v2",
-                  "api-reference/api-v2/mrp-get-endpoints-civops-api-v2",
-                  "api-reference/api-v2/mrp-post-endpoints-civops-api-v2",
-                  "for-developers/api-v2/cluecontrol-m-v2"
+                  "api-reference/api-v2/mrp-stats-api-v2"
                 ]
               }
             ]
