@@ -1,0 +1,1128 @@
+openapi: 3.1.0
+info:
+  title: Moscow RolePlay API - ER:LC Endpoints
+  description: >
+    Эндпоинты для управления сервером ER:LC.
+
+
+    ## Rate Limits (Ограничения запросов)
+
+
+    | Эндпоинт | Лимит |
+
+    |----------|-------|
+
+    | `/moscowroleplay/erlc/server/*` (кроме command) | 120 запросов/мин |
+
+    | `/moscowroleplay/erlc/server/command` | Очередь: 100 команд |
+
+
+    При превышении лимита возвращается **HTTP 429**.
+
+
+    ## Формат Ответа Об Ошибке
+
+
+    Все ошибки возвращаются в формате JSON с полями `code` и `message`:
+
+
+    ```json
+
+    {
+
+        "code": 5007,
+
+        "message": "missing_token"
+
+    }
+
+    ```
+
+
+    ## Коды Ошибок
+
+
+    ### Ошибки Аутентификации и Доступа
+
+
+    | Код | Статус | Описание |
+
+    |-----|--------|----------|
+
+    | 5006 | 401 | invalid_master_key |
+
+    | 5007 | 401 | missing_token |
+
+    | 5008 | 401 | invalid_token |
+
+    | 5009 | 403 | forbidden |
+
+    | 5010 | 403 | api_version_forbidden |
+
+    | 5011 | 403 | query_param_forbidden |
+
+
+    ### Ошибки PRC API
+
+
+    Эндпоинты используют внешний PRC API и могут возвращать ошибки:
+
+
+    | Код PRC | Описание |
+
+    |---------|----------|
+
+    | 2002 | Invalid or expired server-key |
+
+    | 3002 | Server is offline |
+
+    | 4001 | Rate limited |
+
+    | 9999 | Module out of date |
+
+
+    При ошибке PRC API возвращается:
+
+
+    ```json
+
+    {
+
+        "code": 5019,
+
+        "message": "prc_api_error",
+
+        "prc_code": 2002,
+
+        "prc_message": "Invalid or expired server-key"
+
+    }
+
+    ```
+
+
+    Базовый URL: `https://api.erlcrussia.xyz/v1`
+
+  version: 1.0.0
+servers:
+  - url: https://api.erlcrussia.xyz/v1
+    description: Production
+tags:
+  - name: ERLC
+    description: Данные игрового сервера ER:LC и управление им.
+paths:
+  /moscowroleplay/erlc/server:
+    get:
+      tags:
+        - ERLC
+      summary: Информация о Сервере ER:LC
+      description: >
+        Получение общей информации о сервере ER:LC (онлайн, название, статус и т.д.).
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Успешный ответ с информацией о сервере.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInfo'
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/players:
+    get:
+      tags:
+        - ERLC
+      summary: Список Игроков На Сервере
+      description: |
+        Возвращает текущий список игроков на сервере ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Успешный ответ со списком игроков.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+              example:
+                - Player: PlayerName:Id
+                  Permission: Normal
+                  Callsign: Alpha-1
+                  Team: Police
+                - Player: OfficerName:123456
+                  Permission: Server Moderator
+                  Team: Police
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/joinlogs:
+    get:
+      tags:
+        - ERLC
+      summary: Логи Входов/Выходов Игроков
+      description: |
+        Возвращает список логов входов и выходов игроков на сервер.
+
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Логи входов/выходов.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JoinLog'
+              example:
+                - Join: true
+                  Timestamp: 1704614400
+                  Player: PlayerName:Id
+                - Join: false
+                  Timestamp: 1704614500
+                  Player: OfficerName:123456
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/queue:
+    get:
+      tags:
+        - ERLC
+      summary: Очередь На Сервер
+      description: |
+        Возвращает информацию об очереди на сервер ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Информация об очереди.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                description: Массив ID игроков в очереди.
+                example:
+                  - 1
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/killlogs:
+    get:
+      tags:
+        - ERLC
+      summary: Логи Убийств
+      description: |
+        Возвращает логи убийств на сервере ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Логи убийств.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KillLog'
+              example:
+                - Killed: PlayerName:Id
+                  Timestamp: 1704614400
+                  Killer: PlayerName:Id
+                - Killed: OfficerName:123456
+                  Timestamp: 1704614500
+                  Killer: AttackerName:789012
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/commandlogs:
+    get:
+      tags:
+        - ERLC
+      summary: Логи Команд
+      description: |
+        Возвращает логи выполненных команд на сервере.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Логи команд.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommandLog'
+              example:
+                - Player: PlayerName:Id
+                  Timestamp: 1704614400
+                  Command: ":h"
+                - Player: OfficerName:123456
+                  Timestamp: 1704614500
+                  Command: ":kick PlayerName"
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/modcalls:
+    get:
+      tags:
+        - ERLC
+      summary: Логи Вызовов Модераторов
+      description: |
+        Возвращает логи вызовов модераторов на сервере ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Логи вызовов модераторов.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModCallLog'
+              example:
+                - Caller: PlayerName:Id
+                  Moderator: PlayerName:Id
+                  Timestamp: 1704614400
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/bans:
+    get:
+      tags:
+        - ERLC
+      summary: Список Банов Сервера
+      description: |
+        Возвращает список активных банов на сервере ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Список банов.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                description: Объект где ключ - PlayerId, значение - имя игрока.
+                example:
+                  PlayerId: PlayerName
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/vehicles:
+    get:
+      tags:
+        - ERLC
+      summary: Список Транспорта На Сервере
+      description: |
+        Возвращает список транспорта, находящегося на сервере ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Список транспорта.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vehicle'
+              example:
+                - Name: 2024 Falcon Interceptor Utility
+                  Owner: Pancakeboyman_8
+                  Texture: Standard
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/staff:
+    get:
+      tags:
+        - ERLC
+      summary: Список Персонала Сервера
+      description: |
+        Возвращает список членов персонала сервера ER:LC.
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: Список персонала сервера.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  CoOwners:
+                    type: array
+                    items:
+                      type: integer
+                    description: Массив ID совладельцев.
+                    example:
+                      - 1
+                  Admins:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    description: Объект где ключ - ID админа, значение - имя.
+                    example:
+                      54249787: Black_Hallow
+                  Mods:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    description: Объект где ключ - ID модератора, значение - имя.
+                    example:
+                      2: JohnDoe
+              example:
+                CoOwners:
+                  - 1
+                Admins:
+                  54249787: Black_Hallow
+                  77573259: sli_ckk
+                Mods:
+                  2: JohnDoe
+                  3: JaneDoe
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '400':
+          $ref: '#/components/responses/PRCAPIError'
+  /moscowroleplay/erlc/server/command:
+    post:
+      tags:
+        - ERLC
+      summary: Отправка Команды На Сервер ER:LC
+      description: >
+        Отправляет команду на выполнение на сервере ER:LC.
+
+
+        Команды добавляются в глобальную очередь с ограничением на максимальное
+        количество команд.
+
+
+        **Примечание:** Этот эндпоинт **не подвержен** Rate Limiting (120 запросов/мин).
+      security:
+        - MRPAPIKey: []
+      requestBody:
+        required: true
+        description: Объект с Текстом Команды.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - command
+              properties:
+                command:
+                  type: string
+                  example: ':h Тест API'
+      responses:
+        '200':
+          description: Команда принята в очередь.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: string
+                    description: Статус команды.
+                    example: Queued
+                  QueueSize:
+                    type: integer
+                    description: Текущий размер очереди.
+                    example: 5
+        '400':
+          description: Ошибка в запросе.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MissingCommandError'
+              examples:
+                MissingCommand:
+                  summary: Не передано поле command.
+                  value:
+                    code: 5005
+                    message: MissingCommand
+        '401':
+          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          description: Очередь команд заполнена.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandQueueFullError'
+              examples:
+                CommandQueueFull:
+                  summary: Очередь команд переполнена.
+                  value:
+                    code: 5015
+                    message: CommandQueueFull
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    MRPAPIKey:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: |
+        Стандартный API ключ для доступа к ER:LC эндпоинтам.
+
+        Передается в заголовке `Authorization: Bearer <ключ>`.
+
+        ОБЯЗАТЕЛЕН ДЛЯ ВСЕХ ER:LC ЭНДПОИНТОВ.
+  responses:
+    BadRequest:
+      description: Неверный запрос.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnauthorizedMissingOrInvalidToken:
+      description: Ошибка аутентификации.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            missing_token:
+              summary: Нет токена.
+              value:
+                code: 5007
+                message: missing_token
+            invalid_token:
+              summary: Неверный или деактивированный токен.
+              value:
+                code: 5008
+                message: invalid_token
+            invalid_master_key:
+              summary: Неверный мастер-ключ.
+              value:
+                code: 5006
+                message: invalid_master_key
+    Forbidden:
+      description: Доступ запрещён.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            forbidden:
+              summary: Нет прав доступа к эндпоинту.
+              value:
+                code: 5009
+                message: forbidden
+            api_version_forbidden:
+              summary: Доступ к этой версии API запрещён.
+              value:
+                code: 5010
+                message: api_version_forbidden
+            query_param_forbidden:
+              summary: Query-параметр запрещён.
+              value:
+                code: 5011
+                message: query_param_forbidden
+    NotFound:
+      description: Не найдено.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            discord_id_not_found:
+              summary: Discord ID не найден.
+              value:
+                code: 5012
+                message: discord_id_not_found
+            token_not_found:
+              summary: Токен не найден.
+              value:
+                code: 5013
+                message: token_not_found
+    TooManyRequests:
+      description: Превышено количество запросов (лимит 120/мин) или обнаружен спам (400+ лишних запросов).
+      headers:
+        X-RateLimit-Limit:
+          description: Максимум запросов в минуту.
+          schema:
+            type: integer
+            example: 120
+        X-RateLimit-Remaining:
+          description: Оставшееся количество запросов.
+          schema:
+            type: integer
+            example: 0
+        X-RateLimit-Reset:
+          description: Unix timestamp (мс), когда лимит будет сброшен.
+          schema:
+            type: integer
+            example: 1740339600000
+        Retry-After:
+          description: Секунд до сброса лимита.
+          schema:
+            type: integer
+            example: 45
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/RateLimitError'
+              - $ref: '#/components/schemas/SpamBlockedError'
+          examples:
+            rate_limit_exceeded:
+              summary: Превышение лимита 120 запросов/мин.
+              value:
+                code: 5016
+                message: rate_limit_exceeded
+                retry_after: 45
+                details:
+                  limit: 120
+                  count: 125
+                  excess: 5
+                  reset_at: 1740339600000
+            spam_blocked:
+              summary: Бан за спам (400+ лишних запросов).
+              value:
+                code: 5023
+                message: spam_blocked
+                blocked_until: 1740339900000
+                remaining_seconds: 300
+    PRCAPIError:
+      description: Ошибка от внешнего PRC API (ER:LC).
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 5019
+              message:
+                type: string
+                example: prc_api_error
+              prc_code:
+                type: integer
+                description: Код ошибки PRC API.
+              prc_message:
+                type: string
+                description: Описание ошибки.
+          examples:
+            expired_server_key:
+              summary: Server-Key недействителен или истёк.
+              value:
+                code: 5019
+                message: prc_api_error
+                prc_code: 2002
+                prc_message: Invalid or expired server-key
+            server_offline:
+              summary: Сервер офлайн (нет игроков).
+              value:
+                code: 5019
+                message: prc_api_error
+                prc_code: 3002
+                prc_message: Server is offline (no players)
+            module_outdated:
+              summary: Модуль на сервере устарел.
+              value:
+                code: 5019
+                message: prc_api_error
+                prc_code: 9999
+                prc_message: In-game server module is out of date
+    InternalServerError:
+      description: Внутренняя ошибка сервера.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            server_error:
+              summary: Ошибка внешнего ER:LC API.
+              value:
+                code: 5018
+                message: server_error
+    SpamDetectedLevel1:
+      description: Подозрительная активность (500+ запросов/сек). Блокировка на 5 минут.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 5020
+              message:
+                type: string
+                example: spam_detected_level_1
+              blocked_until:
+                type: string
+                format: date-time
+                description: Время окончания блокировки.
+              remaining_seconds:
+                type: integer
+                description: Оставшееся время блокировки в секундах.
+          examples:
+            spam_level_1:
+              value:
+                code: 5020
+                message: spam_detected_level_1
+                blocked_until: "2026-02-23T12:35:00.000Z"
+                remaining_seconds: 300
+    SpamDetectedLevel2:
+      description: Атака на сервер (5000+ запросов/сек). Блокировка на 15 минут.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 5021
+              message:
+                type: string
+                example: spam_detected_level_2
+              blocked_until:
+                type: string
+                format: date-time
+                description: Время окончания блокировки.
+              remaining_seconds:
+                type: integer
+                description: Оставшееся время блокировки в секундах.
+          examples:
+            spam_level_2:
+              value:
+                code: 5021
+                message: spam_detected_level_2
+                blocked_until: "2026-02-23T12:45:00.000Z"
+                remaining_seconds: 900
+    SpamDetectedLevel3:
+      description: Критическая атака (100000+ запросов/сек). Блокировка на 60 минут.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 5022
+              message:
+                type: string
+                example: spam_detected_level_3
+              blocked_until:
+                type: string
+                format: date-time
+                description: Время окончания блокировки.
+              remaining_seconds:
+                type: integer
+                description: Оставшееся время блокировки в секундах.
+          examples:
+            spam_level_3:
+              value:
+                code: 5022
+                message: spam_detected_level_3
+                blocked_until: "2026-02-23T13:30:00.000Z"
+                remaining_seconds: 3600
+    SpamBlocked:
+      description: Активная блокировка за спам. Запрос от заблокированного клиента.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                example: 5023
+              message:
+                type: string
+                example: spam_blocked
+              blocked_until:
+                type: string
+                format: date-time
+                description: Время окончания блокировки.
+              remaining_seconds:
+                type: integer
+                description: Оставшееся время блокировки в секундах.
+          examples:
+            spam_blocked:
+              value:
+                code: 5023
+                message: spam_blocked
+                blocked_until: "2026-02-23T12:35:00.000Z"
+                remaining_seconds: 245
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Стандартный формат ошибки.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          description: Код ошибки API.
+          example: 5007
+        message:
+          type: string
+          description: Сообщение/идентификатор ошибки.
+          example: missing_token
+    UnauthorizedError:
+      type: object
+      description: Ошибка аутентификации (отсутствует или неверный токен).
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 5007
+        message:
+          type: string
+          example: missing_token
+    ForbiddenError:
+      type: object
+      description: Ошибка доступа (запрещено).
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 5009
+        message:
+          type: string
+          example: forbidden
+    MissingCommandError:
+      type: object
+      description: Ошибка при отсутствии команды в запросе.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 5005
+        message:
+          type: string
+          example: MissingCommand
+    CommandQueueFullError:
+      type: object
+      description: Ошибка при заполненной очереди команд.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 5015
+        message:
+          type: string
+          example: CommandQueueFull
+    RateLimitError:
+      type: object
+      description: Ошибка превышения лимита запросов (120/мин). Возвращает details с информацией о счётчике.
+      required:
+        - code
+        - message
+        - retry_after
+        - details
+      properties:
+        code:
+          type: integer
+          example: 5016
+        message:
+          type: string
+          example: rate_limit_exceeded
+        retry_after:
+          type: integer
+          description: Время до сброса лимита в секундах.
+          example: 45
+        details:
+          type: object
+          properties:
+            limit:
+              type: integer
+              description: Лимит запросов в минуту.
+              example: 120
+            count:
+              type: integer
+              description: Текущее количество запросов.
+              example: 125
+            excess:
+              type: integer
+              description: Количество лишних запросов (сверх лимита).
+              example: 5
+            reset_at:
+              type: integer
+              description: Unix timestamp (мс) сброса лимита.
+              example: 1740339600000
+    SpamBlockedError:
+      type: object
+      description: Блокировка за спам. Выдаётся при 400+ лишних запросах. Бан на 5 минут + дополнительные минуты за продолжение спама.
+      required:
+        - code
+        - message
+        - blocked_until
+        - remaining_seconds
+      properties:
+        code:
+          type: integer
+          example: 5023
+        message:
+          type: string
+          example: spam_blocked
+        blocked_until:
+          type: integer
+          description: Unix timestamp (мс) окончания блокировки.
+          example: 1740339900000
+        remaining_seconds:
+          type: integer
+          description: Осталось секунд до разблокировки.
+          example: 300
+    ServerInfo:
+      type: object
+      description: Общая информация о сервере ER:LC.
+      properties:
+        Name:
+          type: string
+          description: Название сервера.
+          example: API Test
+        OwnerId:
+          type: integer
+          description: Discord ID владельца сервера.
+          example: 1
+        CoOwnerIds:
+          type: array
+          description: Массив Discord ID совладельцев сервера.
+          items:
+            type: integer
+          example:
+            - 1
+        CurrentPlayers:
+          type: integer
+          description: Текущее количество игроков на сервере.
+          example: 1
+        MaxPlayers:
+          type: integer
+          description: Максимальное количество игроков.
+          example: 1
+        JoinKey:
+          type: string
+          description: Ключ для подключения к серверу.
+          example: APIServer
+        AccVerifiedReq:
+          type: string
+          description: Требование верификации аккаунта (Disabled/Email/Phone/ID).
+          example: Disabled / Email / Phone/ID
+        TeamBalance:
+          type: boolean
+          description: Включён ли баланс команд.
+          example: true
+      example:
+        Name: API Test
+        OwnerId: 1
+        CoOwnerIds:
+          - 1
+        CurrentPlayers: 1
+        MaxPlayers: 1
+        JoinKey: APIServer
+        AccVerifiedReq: Disabled / Email / Phone/ID
+        TeamBalance: true
+    Player:
+      type: object
+      properties:
+        Player:
+          type: string
+          description: Имя игрока и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+        Permission:
+          type: string
+          description: Уровень разрешений игрока.
+          example: Normal
+          enum:
+            - Normal
+            - Server Administrator
+            - Server Owner
+            - Server Moderator
+        Callsign:
+          type: string
+          description: Позывной игрока (доступно только если игрок не в гражданской команде).
+          example: Alpha-1
+        Team:
+          type: string
+          description: Команда игрока.
+          example: Police
+      example:
+        Player: PlayerName:Id
+        Permission: Normal
+        Callsign: Alpha-1
+        Team: Police
+    JoinLog:
+      type: object
+      properties:
+        Join:
+          type: boolean
+          description: true если игрок зашёл, false если вышел.
+          example: true
+        Timestamp:
+          type: integer
+          description: Unix timestamp события.
+          example: 1704614400
+        Player:
+          type: string
+          description: Имя игрока и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+      example:
+        Join: true
+        Timestamp: 1704614400
+        Player: PlayerName:Id
+    KillLog:
+      type: object
+      properties:
+        Killed:
+          type: string
+          description: Имя убитого игрока и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+        Timestamp:
+          type: integer
+          description: Unix timestamp события.
+          example: 1704614400
+        Killer:
+          type: string
+          description: Имя убийцы и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+      example:
+        Killed: PlayerName:Id
+        Timestamp: 1704614400
+        Killer: PlayerName:Id
+    CommandLog:
+      type: object
+      properties:
+        Player:
+          type: string
+          description: Имя игрока и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+        Timestamp:
+          type: integer
+          description: Unix timestamp события.
+          example: 1704614400
+        Command:
+          type: string
+          description: Выполненная команда.
+          example: ":h"
+      example:
+        Player: PlayerName:Id
+        Timestamp: 1704614400
+        Command: ":h"
+    ModCallLog:
+      type: object
+      properties:
+        Caller:
+          type: string
+          description: Имя игрока вызвавшего модератора и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+        Moderator:
+          type: string
+          description: Имя модератора и его ID в формате PlayerName:Id.
+          example: PlayerName:Id
+        Timestamp:
+          type: integer
+          description: Unix timestamp вызова.
+          example: 1704614400
+      example:
+        Caller: PlayerName:Id
+        Moderator: PlayerName:Id
+        Timestamp: 1704614400
+    Vehicle:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Название транспорта.
+          example: 2024 Falcon Interceptor Utility
+        Owner:
+          type: string
+          description: Владелец транспорта.
+          example: Pancakeboyman_8
+        Texture:
+          type: string
+          description: Текстура транспорта.
+          example: Standard
+      example:
+        Name: 2024 Falcon Interceptor Utility
+        Owner: Pancakeboyman_8
+        Texture: Standard

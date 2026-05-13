@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  title: Moscow RolePlay API - Stats V2 Endpoints
+  description: >
+    Унифицированный эндпоинт статистики с батч-запросами.
+
+    ## Формат Запроса
+
+    Используйте повторяющиеся query-параметры для батч-запросов:
+    ```
+    ?servers=MVD&metrics=membercount&servers=FSB&metrics=botcount
+    ```
+
+    ## Формат Ответа
+
+    - **1 запрос** → `text/plain` (просто число)
+    - **Несколько запросов** → `application/json` с объектом `{server: {metric: value}}`
+
+    ## Авторизация (опционально)
+
+    Передайте токен для увеличения лимита с 40 до 120 запросов/мин:
+    - Header: `Authorization: Bearer <token>`
+
+    ## Формат Ответа Об Ошибке
+
+    Все ошибки возвращаются в формате JSON с полями `code` и `message`:
+
+    ```json
+    {
+        "code": 5001,
+        "message": "unsupported_server"
+    }
+    ```
+
+    ## Коды Ошибок
+
+    | Код | Статус | Описание |
+    |-----|--------|----------|
+    | 5001 | 400 | unsupported_server |
+    | 5002 | 400 | servers_metrics_mismatch |
+    | 5003 | 400 | unsupported_metric |
+    | 5004 | 400 | playercount_only_mrp |
+    | 5005 | 401 | missing_token (для защищённых эндпоинтов) |
+    | 5016 | 429 | rate_limit_exceeded |
+    | 5023 | 429 | spam_blocked |
+    | 5018 | 500 | server_error |
+
+    Базовый URL: `https://api.erlcrussia.xyz/v2`
+
+    Возвращает статистику для одного или нескольких серверов.
+
+    ## Примеры
+
+    ### 1 запрос (text/plain):
+    ```
+    GET /v2/moscowroleplay/stats?servers=MVD&metrics=membercount
+    ```
+    Ответ: `67`
+
+    ### Несколько запросов (JSON):
+    ```
+    GET /v2/moscowroleplay/stats?servers=MVD&metrics=membercount&servers=FSB&metrics=botcount
+    ```
+    Ответ:
+    ```json
+    {
+      "MVD": { "membercount": "67" },
+      "FSB": { "botcount": "5" }
+    }
+    ```
+
+    ### Playercount (только MRP):
+    ```
+    GET /v2/moscowroleplay/stats?servers=MRP&metrics=playercount
+    ```
+
+    ## Поддерживаемые Серверы
+    - MVD
+    - FSB
+    - MCHS
+    - MZ
+    - 112
+    - DOT
+    - MRP
+
+    ## Поддерживаемые Метрики
+    - `membercount` — участники с ролью
+    - `allmembercount` — все участники (включая ботов)
+    - `botcount` — только боты
+    - `playercount` — игроки ER:LC (только MRP!)
+  version: 2.0.0
+servers:
+  - url: https://api.erlcrussia.xyz/v2
+    description: Production
+tags:
+  - name: Stats V2
+    description: Унифицированная статистика с батч-запросами.
+paths:
+  /moscowroleplay/stats:
+    get:
+      tags:
+        - Stats V2
+      summary: Унифицированная Статистика
+      description: |
+        **Ограничения:**
+        - DOT: только `membercount`
+        - MRP: `playercount` доступен только для MRP
+      parameters:
+        - name: servers
+          in: query
+          required: true
+          description: |
+            Имена серверов. Можно указать несколько через повторяющийся параметр.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - MVD
+                - FSB
+                - MCHS
+                - MZ
+                - '112'
+                - DOT
+                - MRP
+          example: MVD
+        - name: metrics
+          in: query
+          required: true
+          description: |
+            Типы метрик. Должно соответствовать количеству `servers`.
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - membercount
+                - allmembercount
+                - botcount
+                - playercount
+          example: membercount
+      security:
+        - MRPAPIKey: []
+      responses:
+        '200':
+          description: |
+            Успешный ответ. Формат зависит от количества запросов:
+            - 1 запрос → text/plain
+            - Несколько → application/json
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: Значение метрики (только для 1 запроса)
+                example: '67'
+            application/json:
+              schema:
+                type: object
+                description: Объект с результатами (только для нескольких запросов)
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    type: string
+              example:
+                MVD:
+                  membercount: '67'
+                FSB:
+                  botcount: '5'
+        '400':
+          description: |
+            Неверный запрос. Возможные причины:
+            - Отсутствуют обязательные параметры
+            - Неподдерживаемый сервер или метрика
+            - Несовпадение количества servers и metrics
+            - Playercount для сервера отличного от MRP
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missing_params:
+                  summary: Отсутствуют обязательные параметры
+                  value:
+                    code: 5001
+                    message: 'Missing required query parameters: servers and metrics'
+                unsupported_server:
+                  summary: Неподдерживаемый сервер
+                  value:
+                    code: 5001
+                    message: 'unsupported_server'
+                mismatch:
+                  summary: Несовпадение массивов
+                  value:
+                    code: 5002
+                    message: 'servers and metrics arrays must have same length'
+                playercount_not_mrp:
+                  summary: Playercount только для MRP
+                  value:
+                    code: 5004
+                    message: 'playercount is only available for MRP server'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    MRPAPIKey:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: |
+        Опциональный API ключ для увеличения лимита с 40 до 120 запросов/мин.
+
+        Передается в заголовке `Authorization: Bearer <ключ>`.
+  responses:
+    Unauthorized:
+      description: Ошибка аутентификации (неверный токен).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            invalid_token:
+              summary: Неверный или деактивированный токен.
+              value:
+                code: 5008
+                message: invalid_token
+    TooManyRequests:
+      description: |
+        Превышен лимит запросов:
+        - Без токена: 40 запросов/мин
+        - С токеном: 120 запросов/мин
+      headers:
+        X-RateLimit-Limit:
+          description: Максимум запросов в минуту.
+          schema:
+            type: integer
+            example: 40
+        X-RateLimit-Remaining:
+          description: Оставшееся количество запросов.
+          schema:
+            type: integer
+            example: 0
+        X-RateLimit-Reset:
+          description: Unix timestamp (мс), когда лимит будет сброшен.
+          schema:
+            type: integer
+            example: 1740339600000
+        Retry-After:
+          description: Секунд до сброса лимита.
+          schema:
+            type: integer
+            example: 45
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            rate_limit:
+              summary: Превышение лимита
+              value:
+                code: 5016
+                message: rate_limit_exceeded
+                retry_after: 45
+                details:
+                  limit: 40
+                  count: 45
+                  excess: 5
+                  reset_at: 1740339600000
+            spam_blocked:
+              summary: Бан за спам
+              value:
+                code: 5023
+                message: spam_blocked
+                blocked_until: 1740339900000
+                remaining_seconds: 300
+    InternalServerError:
+      description: Внутренняя ошибка сервера.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            server_error:
+              summary: Ошибка внешнего API
+              value:
+                code: 5018
+                message: server_error
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Стандартный формат ошибки.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          description: Код ошибки API.
+          example: 5001
+        message:
+          type: string
+          description: Сообщение/идентификатор ошибки.
+          example: unsupported_server
+        retry_after:
+          type: integer
+          description: Секунд до сброса лимита (только для 429).
+          example: 45
+        details:
+          type: object
+          description: Дополнительные детали ошибки.
+        blocked_until:
+          type: integer
+          description: Unix timestamp (мс) окончания бана.
+          example: 1740339900000
+        remaining_seconds:
+          type: integer
+          description: Оставшихся секунд блокировки.
+          example: 300
