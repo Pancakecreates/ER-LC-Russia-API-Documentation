@@ -82,22 +82,18 @@
               {
                 "version": "API V2",
                 "pages": [
+                  "for-developers/api-v2/mrp-erlc-api-v2",
                   {
                     "group": "MRP ER:LC API V2",
-                    "openapi": "/openapi/ru-erlc-v2-openapi.yaml",
-                    "pages": [
-                      "untitled-page"
-                    ]
+                    "openapi": "/openapi/ru-erlc-v2-openapi.yaml"
                   },
-                  "for-developers/api-v2/mrp-erlc-api-v2/introduction",
                   {
                     "group": "MRP API Экономики V2",
-                    "pages": [
-                      "for-developers/api-v2/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2",
-                      "for-developers/api-v2/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2"
-                    ]
+                    "openapi": "openapi/ru-economy-v2-openapi.yaml"
                   },
                   "for-developers/api-v2/mrp-stats-api-v2",
+                  "for-developers/api-v2/mrp-get-endpoints-civops-api-v2",
+                  "for-developers/api-v2/mrp-post-endpoints-civops-api-v2",
                   "for-developers/api-v2/cluecontrol-m-v2"
                 ]
               }
