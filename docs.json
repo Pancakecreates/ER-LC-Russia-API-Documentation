@@ -136,10 +136,17 @@
                             ]
                           }
                         ]
+                      },
+                      {
+                        "group": "MRP API Экономики V2",
+                        "root": "api-reference/api-v2/mrp-stats-api-v2",
+                        "icon": "/icons/bar-chart-icon.svg",
+                        "pages": [
+                          "api/mrp-stats-api-v2/get-moscowroleplay-stats"
+                        ]
                       }
                     ]
-                  },
-                  "api-reference/api-v2/mrp-stats-api-v2"
+                  }
                 ]
               }
             ]
