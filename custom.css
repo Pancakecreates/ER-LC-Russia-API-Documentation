@@ -211,7 +211,7 @@ footer img[src*="Banner-ERLC-Russia-Docs-System.svg"] {
   width: 192px !important;
   max-height: none !important;
   object-fit: contain !important;
-  transform: translateX(-10px) !important;
+  transform: translate(-10px, -12px) !important;
 }
 
 /* Скрываем контейнер с кнопками переключения тем только в футере
