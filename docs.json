@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "mint",
   "name": "ER:LC Россия API",
   "colors": {
     "primary": "#02B1DA",
@@ -66,6 +66,7 @@
                         "root": "api-reference/api-v1/mrp-erlc-api-v1",
                         "icon": "/icons/race-car-icon.svg",
                         "pages": [
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-bans",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-players",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-joinlogs",
@@ -73,20 +74,29 @@
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-killlogs",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-commandlogs",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-modcalls",
-                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-bans",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-vehicles",
                           "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-staff",
                           "api/mrp-erlc-api-v1/post-moscowroleplay-erlc-server-command"
                         ]
                       },
-                      "api-reference/api-v1/mrp-erlc-api-v1",
-                      "api-reference/api-v1/mrp-stats-api-v1"
+                      {
+                        "group": "MRP API Статистики V1",
+                        "root": "api-reference/api-v1/mrp-stats-api-v1",
+                        "icon": "/icons/race-car-icon.svg",
+                        "pages": [
+                          "api/mrp-stats-api-v1/get-moscowroleplay-stats-playercount",
+                          "api/mrp-stats-api-v1/get-moscowroleplay-stats-server-membercount",
+                          "api/mrp-stats-api-v1/get-moscowroleplay-stats-server-allmembercount",
+                          "api/mrp-stats-api-v1/get-moscowroleplay-stats-server-botcount"
+                        ]
+                      }
                     ]
                   }
                 ]
               },
               {
                 "version": "API V2",
+                "default": true,
                 "pages": [
                   {
                     "group": "Документация API V2",

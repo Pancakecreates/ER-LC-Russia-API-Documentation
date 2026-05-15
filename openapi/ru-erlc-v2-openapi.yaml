@@ -1,84 +1,18 @@
 openapi: 3.1.0
 info:
-  title: Moscow RolePlay API - ERLC v2 Endpoints
-  description: |
-    Эндпоинты для управления сервером ERLC v2 API.
-
-    ## Что нового в API v2?
-
-    PRC API v2 предоставляет более согласованную и простую модель запросов для разработчиков.
-    Также включает запрашиваемые данные, такие как местоположение игроков и цвета транспорта!
-
-    API v1 продолжает работать без существенных изменений.
-
-    ## Rate Limits (Ограничения запросов)
-
-    | Эндпоинт | Лимит |
-    |----------|-------|
-    | `/moscowroleplay/erlc/server/*` (кроме command) | 120 запросов/мин |
-    | `/moscowroleplay/erlc/server/command` | Очередь: 100 команд |
-
-    При превышении лимита возвращается **HTTP 429**.
-
-    ## Формат Ответа Об Ошибке
-
-    Все ошибки возвращаются в формате JSON с полями `code` и `message`:
-
-    ```json
-    {
-        "code": 5007,
-        "message": "missing_token"
-    }
-    ```
-
-    ## Коды Ошибок
-
-    ### Ошибки Аутентификации и Доступа
-
-    | Код | Статус | Описание |
-    |-----|--------|----------|
-    | 5006 | 401 | invalid_master_key |
-    | 5007 | 401 | missing_token |
-    | 5008 | 401 | invalid_token |
-    | 5009 | 403 | forbidden |
-    | 5010 | 403 | api_version_forbidden |
-    | 5011 | 403 | query_param_forbidden |
-
-    ### Ошибки PRC API
-
-    Эндпоинты используют внешний PRC API и могут возвращать ошибки:
-
-    | Код PRC | Описание |
-    |---------|----------|
-    | 2002 | Invalid or expired server-key |
-    | 3002 | Server is offline |
-    | 4001 | Rate limited |
-    | 9999 | Module out of date |
-
-    При ошибке PRC API возвращается:
-
-    ```json
-    {
-        "code": 5019,
-        "message": "prc_api_error",
-        "prc_code": 2002,
-        "prc_message": "Invalid or expired server-key"
-    }
-    ```
-
-    Базовый URL: `https://api.erlcrussia.xyz/v2`
+  title: ER:LC Россия API V2 - Moscow RolePlay API ER:LC V2
   version: 2.0.0
 servers:
   - url: https://api.erlcrussia.xyz/v2
-    description: Production
+    description: Moscow RolePlay API ER:LC V2
 tags:
-  - name: ERLC v2
+  - name: Moscow RolePlay API ER:LC V2
     description: Данные игрового сервера ER:LC v2 API и управление им.
 paths:
   /moscowroleplay/erlc/server:
     get:
       tags:
-        - ERLC v2
+        - Moscow RolePlay API ER:LC V2
       summary: Информация о Сервере ER:LC
       description: |
         Получение общей информации о сервере ER:LC.
@@ -150,7 +84,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerInfoV2'
               examples:
-                FullInfo:
+                Full Info:
                   summary: Полная информация о сервере.
                   value:
                     Name: API Test
@@ -219,7 +153,7 @@ paths:
                         Texture: Livery Name
                         ColorHex: "#ff4444"
                         ColorName: Super Red
-                BasicInfo:
+                Basic Info:
                   summary: Базовая информация о сервере.
                   value:
                     Name: API Test
@@ -231,7 +165,7 @@ paths:
                     JoinKey: APIServer
                     AccVerifiedReq: Disabled
                     TeamBalance: true
-                WithPlayers:
+                With Players:
                   summary: С информацией об игроках.
                   value:
                     Name: Moscow RolePlay
@@ -260,7 +194,7 @@ paths:
                         Callsign: null
                         Permission: Normal / Server Administrator / Server Owner / Server Co-Owner / Server Moderator
                         WantedStars: 0
-                WithStaff:
+                With Staff:
                   summary: С информацией о персонале.
                   value:
                     Name: Moscow RolePlay
@@ -280,7 +214,7 @@ paths:
                         "123456": ModeratorName
                       Helpers:
                         "789012": HelperName
-                WithJoinLogs:
+                With JoinLogs:
                   summary: С логами входов/выходов.
                   value:
                     Name: Moscow RolePlay
@@ -299,7 +233,7 @@ paths:
                       - Join: false
                         Timestamp: 1704614500
                         Player: OfficerName:789012
-                WithQueue:
+                With Queue:
                   summary: С информацией об очереди.
                   value:
                     Name: Moscow RolePlay
@@ -315,7 +249,7 @@ paths:
                       - 1
                       - 2
                       - 3
-                WithKillLogs:
+                With KillLogs:
                   summary: С логами убийств.
                   value:
                     Name: Moscow RolePlay
@@ -334,7 +268,7 @@ paths:
                       - Killed: OfficerName:111111
                         Timestamp: 1704614500
                         Killer: AttackerName:222222
-                WithCommandLogs:
+                With CommandLogs:
                   summary: С логами команд.
                   value:
                     Name: Moscow RolePlay
@@ -353,7 +287,7 @@ paths:
                       - Player: OfficerName:789012
                         Timestamp: 1704614500
                         Command: ":kick PlayerName"
-                WithModCalls:
+                With ModCalls:
                   summary: С логами вызовов модераторов.
                   value:
                     Name: Moscow RolePlay
@@ -372,7 +306,7 @@ paths:
                       - Caller: PlayerName:222222
                         Moderator: null
                         Timestamp: 1704614500
-                WithEmergencyCalls:
+                With EmergencyCalls:
                   summary: С логами вызовов экстренных служб.
                   value:
                     Name: Moscow RolePlay
@@ -408,7 +342,7 @@ paths:
                         CallNumber: 43
                         Description: Traffic accident
                         PositionDescriptor: Main Street intersection
-                WithVehicles:
+                With Vehicles:
                   summary: С информацией о транспорте.
                   value:
                     Name: Moscow RolePlay
@@ -445,7 +379,7 @@ paths:
   /moscowroleplay/erlc/server/command:
     post:
       tags:
-        - ERLC v2
+        - Moscow RolePlay API ER:LC V2
       summary: Выполнение Команды на Сервере
       description: |
         Отправляет команду на выполнение на сервер ER:LC.
@@ -488,7 +422,7 @@ paths:
                     description: Текущий размер очереди команд.
                     example: 5
               examples:
-                success:
+                Success:
                   summary: Команда добавлена в очередь.
                   value:
                     Status: Queued
@@ -500,7 +434,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/MissingCommandError'
               examples:
-                missing_command:
+                Missing Command:
                   summary: Отсутствует поле command.
                   value:
                     code: 5005
@@ -516,7 +450,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommandQueueFullError'
               examples:
-                queue_full:
+                Command Queue Full:
                   summary: Очередь команд заполнена.
                   value:
                     code: 5015
@@ -544,21 +478,21 @@ components:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
           examples:
-            missing_token:
+            Missing Token:
               summary: Нет токена.
               value:
                 code: 5007
-                message: missing_token
-            invalid_token:
+                message: Missing Token
+            Invalid Token:
               summary: Неверный или деактивированный токен.
               value:
                 code: 5008
-                message: invalid_token
-            invalid_master_key:
+                message: Invalid Token
+            Invalid Master Key:
               summary: Неверный мастер-ключ.
               value:
                 code: 5006
-                message: invalid_master_key
+                message: Invalid Master Key
     Forbidden:
       description: Доступ запрещён.
       content:
@@ -566,23 +500,23 @@ components:
           schema:
             $ref: '#/components/schemas/ForbiddenError'
           examples:
-            forbidden:
+            Forbidden:
               summary: Нет прав доступа к эндпоинту.
               value:
                 code: 5009
-                message: forbidden
-            api_version_forbidden:
+                message: Forbidden
+            Api Version Forbidden:
               summary: Доступ к этой версии API запрещён.
               value:
                 code: 5010
-                message: api_version_forbidden
-            query_param_forbidden:
+                message: Api Version Forbidden
+            Query Param Forbidden:
               summary: Query-параметр запрещён.
               value:
                 code: 5011
-                message: query_param_forbidden
+                message: Query Param Forbidden
     TooManyRequests:
-      description: Превышено количество запросов (лимит 120/мин) или обнаружен спам (400+ лишних запросов).
+      description: Превышено количество запросов (лимит 120/мин).
       headers:
         X-RateLimit-Limit:
           description: Максимум запросов в минуту.
@@ -607,28 +541,19 @@ components:
       content:
         application/json:
           schema:
-            oneOf:
-              - $ref: '#/components/schemas/RateLimitError'
-              - $ref: '#/components/schemas/SpamBlockedError'
+            $ref: '#/components/schemas/RateLimitError'
           examples:
-            rate_limit_exceeded:
+            Rate Limit Exceeded:
               summary: Превышение лимита 120 запросов/мин.
               value:
                 code: 5016
-                message: rate_limit_exceeded
+                message: Rate Limit Exceeded
                 retry_after: 45
                 details:
                   limit: 120
                   count: 125
                   excess: 5
                   reset_at: 1740339600000
-            spam_blocked:
-              summary: Бан за спам (400+ лишних запросов).
-              value:
-                code: 5023
-                message: spam_blocked
-                blocked_until: 1740339900000
-                remaining_seconds: 300
     PRCAPIError:
       description: Ошибка от внешнего ER:LC API (PRC).
       content:
@@ -641,7 +566,7 @@ components:
                 example: 5019
               message:
                 type: string
-                example: prc_api_error
+                example: Prc Api Error
               prc_code:
                 type: integer
                 description: Код ошибки ER:LC API.
@@ -649,25 +574,25 @@ components:
                 type: string
                 description: Описание ошибки.
           examples:
-            expired_server_key:
+            Expired Server Key:
               summary: Server-Key недействителен или истёк.
               value:
                 code: 5019
-                message: prc_api_error
+                message: Prc Api Error
                 prc_code: 2002
                 prc_message: Invalid or expired server-key
-            server_offline:
+            Server Offline:
               summary: Сервер офлайн (нет игроков).
               value:
                 code: 5019
-                message: prc_api_error
+                message: Prc Api Error
                 prc_code: 3002
                 prc_message: Server is offline (no players)
-            module_outdated:
+            Module Outdated:
               summary: Модуль на сервере устарел.
               value:
                 code: 5019
-                message: prc_api_error
+                message: Prc Api Error
                 prc_code: 9999
                 prc_message: In-game server module is out of date
     InternalServerError:
@@ -677,11 +602,11 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            server_error:
+            Server Error:
               summary: Ошибка внешнего ER:LC API.
               value:
                 code: 5018
-                message: server_error
+                message: Server Error
   schemas:
     ErrorResponse:
       type: object
@@ -697,7 +622,7 @@ components:
         message:
           type: string
           description: Сообщение/идентификатор ошибки.
-          example: missing_token
+          example: Missing Token
     UnauthorizedError:
       type: object
       description: Ошибка аутентификации (отсутствует или неверный токен).
@@ -710,7 +635,7 @@ components:
           example: 5007
         message:
           type: string
-          example: missing_token
+          example: Missing Token
     ForbiddenError:
       type: object
       description: Ошибка доступа (запрещено).
@@ -723,7 +648,7 @@ components:
           example: 5009
         message:
           type: string
-          example: forbidden
+          example: Forbidden
     MissingCommandError:
       type: object
       description: Ошибка при отсутствии команды в запросе.
@@ -736,7 +661,7 @@ components:
           example: 5005
         message:
           type: string
-          example: MissingCommand
+          example: Missing Command
     CommandQueueFullError:
       type: object
       description: Ошибка при заполненной очереди команд. Возвращается при попытке отправить команду, когда очередь заполнена.
@@ -749,7 +674,7 @@ components:
           example: 5015
         message:
           type: string
-          example: CommandQueueFull
+          example: Command Queue Full
     RateLimitError:
       type: object
       description: Ошибка превышения лимита запросов (120/мин). Возвращает details с информацией о счётчике.
@@ -764,7 +689,7 @@ components:
           example: 5016
         message:
           type: string
-          example: rate_limit_exceeded
+          example: Rate Limit Exceeded
         retry_after:
           type: integer
           description: Время до сброса лимита в секундах.
@@ -788,29 +713,6 @@ components:
               type: integer
               description: Unix timestamp (мс) сброса лимита.
               example: 1740339600000
-    SpamBlockedError:
-      type: object
-      description: Блокировка за спам. Выдаётся при 400+ лишних запросах. Бан на 5 минут + дополнительные минуты за продолжение спама.
-      required:
-        - code
-        - message
-        - blocked_until
-        - remaining_seconds
-      properties:
-        code:
-          type: integer
-          example: 5023
-        message:
-          type: string
-          example: spam_blocked
-        blocked_until:
-          type: integer
-          description: Unix timestamp (мс) окончания блокировки.
-          example: 1740339900000
-        remaining_seconds:
-          type: integer
-          description: Осталось секунд до разблокировки.
-          example: 300
     ServerInfoV2:
       type: object
       description: |

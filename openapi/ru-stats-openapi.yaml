@@ -1,56 +1,18 @@
 openapi: 3.1.0
 info:
-  title: Moscow RolePlay API - Stats Endpoints
-  description: >
-    Открытая статистика Discord серверов (без авторизации).
-
-
-    ## Формат Ответа Об Ошибке
-
-
-    Все ошибки возвращаются в формате JSON с полями `code` и `message`:
-
-
-    ```json
-
-    {
-
-        "code": 5001,
-
-        "message": "unsupported_server"
-
-    }
-
-    ```
-
-
-    ## Коды Ошибок
-
-
-    | Код | Статус | Описание |
-
-    |-----|--------|----------|
-
-    | 5001 | 400 | unsupported_server |
-
-    | 5016 | 429 | rate_limit_exceeded |
-
-    | 5018 | 500 | server_error |
-
-
-    Базовый URL: `https://api.erlcrussia.xyz/v1`
+  title: ER:LC Россия API V1 - Moscow RolePlay API Статистики V1
   version: 1.0.0
 servers:
   - url: https://api.erlcrussia.xyz/v1
-    description: Production
+    description: Moscow RolePlay API Статистики V1
 tags:
-  - name: Stats
-    description: Открытая статистика (без авторизации).
+  - name: Moscow RolePlay API Статистики V1
+    description: Открытая статистика Moscow RolePlay.
 paths:
   /moscowroleplay/stats/playercount:
     get:
       tags:
-        - Stats
+        - Moscow RolePlay API Статистики V1
       summary: Текущее Количество Игроков ER:LC
       description: |
         Возвращает текущее количество игроков на сервере ER:LC в виде простого текста.
@@ -72,7 +34,7 @@ paths:
   /moscowroleplay/stats/{server}/membercount:
     get:
       tags:
-        - Stats
+        - Moscow RolePlay API Статистики V1
       summary: Количество Участников Discord Сервера
       description: |
         Возвращает количество участников в Discord для указанного сервера.
@@ -88,17 +50,12 @@ paths:
                 type: string
                 example: '350'
         '400':
-          description: Неверный сервер или неподдерживаемый тип статистики.
+          description: Запрашиваемый тип статистики недоступен для данного сервера.
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                unsupported_server:
-                  summary: Неподдерживаемый сервер.
-                  value:
-                    code: 5001
-                    message: unsupported_server
+                type: string
+                example: 'Запрашиваемый тип статистики недоступен для данного сервера'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -106,7 +63,7 @@ paths:
   /moscowroleplay/stats/{server}/allmembercount:
     get:
       tags:
-        - Stats
+        - Moscow RolePlay API Статистики V1
       summary: Общее Количество Участников (Включая Ботов)
       description: |
         Возвращает общее количество всех участников в Discord (включая ботов) для указанного сервера.
@@ -122,17 +79,12 @@ paths:
                 type: string
                 example: '420'
         '400':
-          description: Неверный сервер или неподдерживаемый тип статистики.
+          description: Запрашиваемый тип статистики недоступен для данного сервера.
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                unsupported_server:
-                  summary: Статистика недоступна для данного сервера.
-                  value:
-                    code: 5001
-                    message: stats_unavailable_for_server
+                type: string
+                example: 'Запрашиваемый тип статистики недоступен для данного сервера'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -140,7 +92,7 @@ paths:
   /moscowroleplay/stats/{server}/botcount:
     get:
       tags:
-        - Stats
+        - Moscow RolePlay API Статистики V1
       summary: Количество Ботов Discord Сервера
       description: |
         Возвращает количество ботов в Discord для указанного сервера.
@@ -156,17 +108,12 @@ paths:
                 type: string
                 example: '15'
         '400':
-          description: Неверный сервер или неподдерживаемый тип статистики.
+          description: Запрашиваемый тип статистики недоступен для данного сервера.
           content:
-            application/json:
+            text/plain:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                unsupported_server:
-                  summary: Неподдерживаемый сервер.
-                  value:
-                    code: 5001
-                    message: unsupported_server
+                type: string
+                example: 'Запрашиваемый тип статистики недоступен для данного сервера'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -197,7 +144,7 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     TooManyRequests:
-      description: Превышено количество запросов (лимит 20/мин) или обнаружен спам (400+ лишних запросов).
+      description: Превышено количество запросов (лимит 20/мин).
       headers:
         X-RateLimit-Limit:
           description: Максимум запросов в минуту.
@@ -224,24 +171,17 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            too_many_requests:
+            Rate Limit Exceeded:
               summary: Превышение лимита 20 запросов/мин.
               value:
                 code: 5016
-                message: rate_limit_exceeded
+                message: Rate Limit Exceeded
                 retry_after: 45
                 details:
                   limit: 20
                   count: 25
                   excess: 5
                   reset_at: 1740339600000
-            spam_blocked:
-              summary: Бан за спам (400+ лишних запросов).
-              value:
-                code: 5023
-                message: spam_blocked
-                blocked_until: 1740339900000
-                remaining_seconds: 300
     InternalServerError:
       description: Внутренняя ошибка сервера.
       content:
@@ -249,11 +189,11 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            server_error:
+            Server Error:
               summary: Ошибка внешнего ERLC API.
               value:
                 code: 5018
-                message: server_error
+                message: Server Error
   schemas:
     ErrorResponse:
       type: object
@@ -269,4 +209,4 @@ components:
         message:
           type: string
           description: Сообщение/идентификатор ошибки.
-          example: unsupported_server
+          example: Missing Discord Id
