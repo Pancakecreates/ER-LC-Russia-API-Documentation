@@ -32,39 +32,21 @@
                 "group": "Начало",
                 "pages": [
                   "introduction",
-                  "api-use-guidelines"
+                  "api-clients"
                 ]
               },
               {
-                "group": "API V1",
+                "group": "Документация",
                 "pages": [
-                  "for-developers/api-v1/introduction"
+                  "documentation/erlc-location-information",
+                  "documentation/rate-limits",
+                  "documentation/error-codes"
                 ]
               },
               {
-                "group": "API V2",
+                "group": "Правила",
                 "pages": [
-                  "for-developers/api-v2/introduction",
-                  {
-                    "group": "MRP ER:LC API V2",
-                    "pages": [
-                      "for-developers/api-v2/mrp-erlc-api-v2/erlc-location-information",
-                      "for-developers/api-v2/mrp-erlc-api-v2/event-webhook"
-                    ]
-                  },
-                  {
-                    "group": "MRP API Экономики V2",
-                    "pages": [
-                      "for-developers/api-v2/mrp-civops-api-v2/introduction"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Справочник",
-                "pages": [
-                  "for-developers/rate-limits",
-                  "for-developers/error-codes"
+                  "policies/api-use-guidelines"
                 ]
               }
             ]
@@ -75,8 +57,32 @@
               {
                 "version": "API V1",
                 "pages": [
-                  "api-reference/api-v1/mrp-erlc-api-v1",
-                  "api-reference/api-v1/mrp-stats-api-v1"
+                  {
+                    "group": "Документация API V1",
+                    "icon": "/icons/rocket-icon.svg",
+                    "pages": [
+                      {
+                        "group": "MRP ER:LC API V1",
+                        "root": "api-reference/api-v1/mrp-erlc-api-v1",
+                        "icon": "/icons/race-car-icon.svg",
+                        "pages": [
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-players",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-joinlogs",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-queue",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-killlogs",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-commandlogs",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-modcalls",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-bans",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-vehicles",
+                          "api/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-staff",
+                          "api/mrp-erlc-api-v1/post-moscowroleplay-erlc-server-command"
+                        ]
+                      },
+                      "api-reference/api-v1/mrp-erlc-api-v1",
+                      "api-reference/api-v1/mrp-stats-api-v1"
+                    ]
+                  }
                 ]
               },
               {
@@ -91,15 +97,8 @@
                         "root": "api-reference/api-v2/mrp-erlc-api-v2",
                         "icon": "/icons/race-car-icon.svg",
                         "pages": [
-                          "api-reference/api-v2/mrp-erlc-api-v2/erlc-location-information",
-                          {
-                            "group": "Методы API",
-                            "icon": "/icons/tools-icon.svg",
-                            "pages": [
-                              "api/mrp-erlc-api-v2/get-moscowroleplay-erlc-server",
-                              "api/mrp-erlc-api-v2/post-moscowroleplay-erlc-server-command"
-                            ]
-                          }
+                          "api/mrp-erlc-api-v2/get-moscowroleplay-erlc-server",
+                          "api/mrp-erlc-api-v2/post-moscowroleplay-erlc-server-command"
                         ]
                       },
                       {
@@ -149,6 +148,13 @@
                   }
                 ]
               }
+            ]
+          },
+          {
+            "tab": "Другие Варианты Интеграции",
+            "pages": [
+              "other/websocket-gateway",
+              "other/event-webhook"
             ]
           }
         ],

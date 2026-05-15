@@ -1,8 +1,13 @@
 openapi: 3.1.0
 info:
-  title: Moscow RolePlay API - ER:LC Endpoints
+  title: Moscow RolePlay API - ER:LC Endpoints  
   description: >
-    Эндпоинты для управления сервером ER:LC.
+    **ВНИМАНИЕ: Данная версия API v1 устарела!**
+    
+    Большинство эндпоинтов отключены и возвращают ошибку 500.
+    Рекомендуется использовать новую версию API.
+    
+    Работает только эндпоинт: `/moscowroleplay/erlc/server/bans`
 
 
     ## Rate Limits (Ограничения запросов)
@@ -115,233 +120,156 @@ paths:
     get:
       tags:
         - ERLC
-      summary: Информация о Сервере ER:LC
+      summary: Информация о Сервере ER:LC  
       description: >
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Получение общей информации о сервере ER:LC (онлайн, название, статус и т.д.).
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Успешный ответ с информацией о сервере.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerInfo'
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/players:
     get:
       tags:
         - ERLC
-      summary: Список Игроков На Сервере
+      summary: Список Игроков На Сервере  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает текущий список игроков на сервере ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Успешный ответ со списком игроков.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Player'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Player: PlayerName:Id
-                  Permission: Normal
-                  Callsign: Alpha-1
-                  Team: Police
-                - Player: OfficerName:123456
-                  Permission: Server Moderator
-                  Team: Police
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/joinlogs:
     get:
       tags:
         - ERLC
-      summary: Логи Входов/Выходов Игроков
+      summary: Логи Входов/Выходов Игроков  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает список логов входов и выходов игроков на сервер.
-
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Логи входов/выходов.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/JoinLog'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Join: true
-                  Timestamp: 1704614400
-                  Player: PlayerName:Id
-                - Join: false
-                  Timestamp: 1704614500
-                  Player: OfficerName:123456
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/queue:
     get:
       tags:
         - ERLC
-      summary: Очередь На Сервер
+      summary: Очередь На Сервер  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает информацию об очереди на сервер ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Информация об очереди.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: integer
-                description: Массив ID игроков в очереди.
-                example:
-                  - 1
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/killlogs:
     get:
       tags:
         - ERLC
-      summary: Логи Убийств
+      summary: Логи Убийств  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает логи убийств на сервере ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Логи убийств.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/KillLog'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Killed: PlayerName:Id
-                  Timestamp: 1704614400
-                  Killer: PlayerName:Id
-                - Killed: OfficerName:123456
-                  Timestamp: 1704614500
-                  Killer: AttackerName:789012
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/commandlogs:
     get:
       tags:
         - ERLC
-      summary: Логи Команд
+      summary: Логи Команд  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает логи выполненных команд на сервере.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Логи команд.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CommandLog'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Player: PlayerName:Id
-                  Timestamp: 1704614400
-                  Command: ":h"
-                - Player: OfficerName:123456
-                  Timestamp: 1704614500
-                  Command: ":kick PlayerName"
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/modcalls:
     get:
       tags:
         - ERLC
-      summary: Логи Вызовов Модераторов
+      summary: Логи Вызовов Модераторов  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает логи вызовов модераторов на сервере ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Логи вызовов модераторов.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ModCallLog'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Caller: PlayerName:Id
-                  Moderator: PlayerName:Id
-                  Timestamp: 1704614400
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/bans:
     get:
       tags:
@@ -377,95 +305,54 @@ paths:
     get:
       tags:
         - ERLC
-      summary: Список Транспорта На Сервере
+      summary: Список Транспорта На Сервере  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает список транспорта, находящегося на сервере ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Список транспорта.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vehicle'
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                - Name: 2024 Falcon Interceptor Utility
-                  Owner: Pancakeboyman_8
-                  Texture: Standard
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/staff:
     get:
       tags:
         - ERLC
-      summary: Список Персонала Сервера
+      summary: Список Персонала Сервера  
       description: |
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Возвращает список членов персонала сервера ER:LC.
+      deprecated: true
       security:
         - MRPAPIKey: []
       responses:
-        '200':
-          description: Список персонала сервера.
+        '500':
+          description: Эндпоинт отключен/устарел.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  CoOwners:
-                    type: array
-                    items:
-                      type: integer
-                    description: Массив ID совладельцев.
-                    example:
-                      - 1
-                  Admins:
-                    type: object
-                    additionalProperties:
-                      type: string
-                    description: Объект где ключ - ID админа, значение - имя.
-                    example:
-                      54249787: Black_Hallow
-                  Mods:
-                    type: object
-                    additionalProperties:
-                      type: string
-                    description: Объект где ключ - ID модератора, значение - имя.
-                    example:
-                      2: JohnDoe
+                $ref: '#/components/schemas/ErrorResponse'
               example:
-                CoOwners:
-                  - 1
-                Admins:
-                  54249787: Black_Hallow
-                  77573259: sli_ckk
-                Mods:
-                  2: JohnDoe
-                  3: JaneDoe
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '400':
-          $ref: '#/components/responses/PRCAPIError'
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
   /moscowroleplay/erlc/server/command:
     post:
       tags:
         - ERLC
-      summary: Отправка Команды На Сервер ER:LC
+      summary: Отправка Команды На Сервер ER:LC  
       description: >
+        **ЭНДПОИНТ ОТКЛЮЧЕН** - Возвращает ошибку 500.
+        
         Отправляет команду на выполнение на сервере ER:LC.
 
 
@@ -474,6 +361,7 @@ paths:
 
 
         **Примечание:** Этот эндпоинт **не подвержен** Rate Limiting (120 запросов/мин).
+      deprecated: true
       security:
         - MRPAPIKey: []
       requestBody:
@@ -490,51 +378,15 @@ paths:
                   type: string
                   example: ':h Тест API'
       responses:
-        '200':
-          description: Команда принята в очередь.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Status:
-                    type: string
-                    description: Статус команды.
-                    example: Queued
-                  QueueSize:
-                    type: integer
-                    description: Текущий размер очереди.
-                    example: 5
-        '400':
-          description: Ошибка в запросе.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MissingCommandError'
-              examples:
-                MissingCommand:
-                  summary: Не передано поле command.
-                  value:
-                    code: 5005
-                    message: MissingCommand
-        '401':
-          $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '429':
-          description: Очередь команд заполнена.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CommandQueueFullError'
-              examples:
-                CommandQueueFull:
-                  summary: Очередь команд переполнена.
-                  value:
-                    code: 5015
-                    message: CommandQueueFull
         '500':
-          $ref: '#/components/responses/InternalServerError'
+          description: Эндпоинт отключен/устарел.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 5018
+                message: 'Endpoint устарел. Используйте более новую версию API.'
 components:
   securitySchemes:
     MRPAPIKey:
@@ -861,37 +713,6 @@ components:
         - message
       properties:
         code:
-          type: integer
-          example: 5009
-        message:
-          type: string
-          example: forbidden
-    MissingCommandError:
-      type: object
-      description: Ошибка при отсутствии команды в запросе.
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          example: 5005
-        message:
-          type: string
-          example: MissingCommand
-    CommandQueueFullError:
-      type: object
-      description: Ошибка при заполненной очереди команд.
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          example: 5015
-        message:
-          type: string
-          example: CommandQueueFull
     RateLimitError:
       type: object
       description: Ошибка превышения лимита запросов (120/мин). Возвращает details с информацией о счётчике.
@@ -932,7 +753,7 @@ components:
               example: 1740339600000
     SpamBlockedError:
       type: object
-      description: Блокировка за спам. Выдаётся при 400+ лишних запросах. Бан на 5 минут + дополнительные минуты за продолжение спама.
+      description: Ошибка блокировки за спам.
       required:
         - code
         - message
@@ -951,178 +772,5 @@ components:
           example: 1740339900000
         remaining_seconds:
           type: integer
-          description: Осталось секунд до разблокировки.
+          description: Секунд до разблокировки.
           example: 300
-    ServerInfo:
-      type: object
-      description: Общая информация о сервере ER:LC.
-      properties:
-        Name:
-          type: string
-          description: Название сервера.
-          example: API Test
-        OwnerId:
-          type: integer
-          description: Discord ID владельца сервера.
-          example: 1
-        CoOwnerIds:
-          type: array
-          description: Массив Discord ID совладельцев сервера.
-          items:
-            type: integer
-          example:
-            - 1
-        CurrentPlayers:
-          type: integer
-          description: Текущее количество игроков на сервере.
-          example: 1
-        MaxPlayers:
-          type: integer
-          description: Максимальное количество игроков.
-          example: 1
-        JoinKey:
-          type: string
-          description: Ключ для подключения к серверу.
-          example: APIServer
-        AccVerifiedReq:
-          type: string
-          description: Требование верификации аккаунта (Disabled/Email/Phone/ID).
-          example: Disabled / Email / Phone/ID
-        TeamBalance:
-          type: boolean
-          description: Включён ли баланс команд.
-          example: true
-      example:
-        Name: API Test
-        OwnerId: 1
-        CoOwnerIds:
-          - 1
-        CurrentPlayers: 1
-        MaxPlayers: 1
-        JoinKey: APIServer
-        AccVerifiedReq: Disabled / Email / Phone/ID
-        TeamBalance: true
-    Player:
-      type: object
-      properties:
-        Player:
-          type: string
-          description: Имя игрока и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-        Permission:
-          type: string
-          description: Уровень разрешений игрока.
-          example: Normal
-          enum:
-            - Normal
-            - Server Administrator
-            - Server Owner
-            - Server Moderator
-        Callsign:
-          type: string
-          description: Позывной игрока (доступно только если игрок не в гражданской команде).
-          example: Alpha-1
-        Team:
-          type: string
-          description: Команда игрока.
-          example: Police
-      example:
-        Player: PlayerName:Id
-        Permission: Normal
-        Callsign: Alpha-1
-        Team: Police
-    JoinLog:
-      type: object
-      properties:
-        Join:
-          type: boolean
-          description: true если игрок зашёл, false если вышел.
-          example: true
-        Timestamp:
-          type: integer
-          description: Unix timestamp события.
-          example: 1704614400
-        Player:
-          type: string
-          description: Имя игрока и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-      example:
-        Join: true
-        Timestamp: 1704614400
-        Player: PlayerName:Id
-    KillLog:
-      type: object
-      properties:
-        Killed:
-          type: string
-          description: Имя убитого игрока и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-        Timestamp:
-          type: integer
-          description: Unix timestamp события.
-          example: 1704614400
-        Killer:
-          type: string
-          description: Имя убийцы и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-      example:
-        Killed: PlayerName:Id
-        Timestamp: 1704614400
-        Killer: PlayerName:Id
-    CommandLog:
-      type: object
-      properties:
-        Player:
-          type: string
-          description: Имя игрока и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-        Timestamp:
-          type: integer
-          description: Unix timestamp события.
-          example: 1704614400
-        Command:
-          type: string
-          description: Выполненная команда.
-          example: ":h"
-      example:
-        Player: PlayerName:Id
-        Timestamp: 1704614400
-        Command: ":h"
-    ModCallLog:
-      type: object
-      properties:
-        Caller:
-          type: string
-          description: Имя игрока вызвавшего модератора и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-        Moderator:
-          type: string
-          description: Имя модератора и его ID в формате PlayerName:Id.
-          example: PlayerName:Id
-        Timestamp:
-          type: integer
-          description: Unix timestamp вызова.
-          example: 1704614400
-      example:
-        Caller: PlayerName:Id
-        Moderator: PlayerName:Id
-        Timestamp: 1704614400
-    Vehicle:
-      type: object
-      properties:
-        Name:
-          type: string
-          description: Название транспорта.
-          example: 2024 Falcon Interceptor Utility
-        Owner:
-          type: string
-          description: Владелец транспорта.
-          example: Pancakeboyman_8
-        Texture:
-          type: string
-          description: Текстура транспорта.
-          example: Standard
-      example:
-        Name: 2024 Falcon Interceptor Utility
-        Owner: Pancakeboyman_8
-        Texture: Standard

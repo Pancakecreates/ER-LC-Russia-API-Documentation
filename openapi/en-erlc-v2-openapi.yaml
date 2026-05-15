@@ -72,13 +72,13 @@ servers:
   - url: https://api.erlcrussia.xyz/v2
     description: Production
 tags:
-  - name: API Reference
+  - name: ERLC v2
     description: ER:LC v2 API game server data and management.
 paths:
   /moscowroleplay/erlc/server:
     get:
       tags:
-        - API Reference
+        - ERLC v2
       summary: ER:LC Server Information
       description: |
         Get general information about ER:LC server.
@@ -445,7 +445,7 @@ paths:
   /moscowroleplay/erlc/server/command:
     post:
       tags:
-        - API Reference
+        - ERLC v2
       summary: Execute Command on Server
       description: |
         Sends a command for execution on ER:LC server.
