@@ -7,6 +7,9 @@
     "light": "#02B1DA",
     "dark": "#02B1DA"
   },
+  "icons": {
+    "library": "fontawesome"
+  },
   "favicon": {
     "light": "/favicon.png",
     "dark": "/favicon.png"
@@ -27,9 +30,11 @@
         "tabs": [
           {
             "tab": "Информация и Правила",
+            "icon": "circle-info",
             "groups": [
               {
                 "group": "Начало",
+                "icon": "rocket",
                 "pages": [
                   "ru/introduction",
                   "ru/api-clients"
@@ -37,6 +42,7 @@
               },
               {
                 "group": "Документация",
+                "icon": "book-open",
                 "pages": [
                   "ru/documentation/erlc-location-information",
                   "ru/documentation/rate-limits",
@@ -45,6 +51,7 @@
               },
               {
                 "group": "Правила",
+                "icon": "scale-balanced",
                 "pages": [
                   "ru/policies/api-use-guidelines"
                 ]
@@ -53,15 +60,18 @@
           },
           {
             "tab": "Документация API",
+            "icon": "code",
             "versions": [
               {
                 "version": "API V1",
                 "pages": [
                   {
                     "group": "Документация API V1",
+                    "icon": "file-code",
                     "pages": [
                       {
                         "group": "MRP ER:LC API V1",
+                        "icon": "gamepad",
                         "root": "ru/api-reference/api-v1/mrp-erlc-api-v1",
                         "pages": [
                           "ru/api-reference/api-v1/mrp-erlc-api-v1/get-moscowroleplay-erlc-server-bans",
@@ -79,6 +89,7 @@
                       },
                       {
                         "group": "MRP API Статистики V1",
+                        "icon": "chart-bar",
                         "root": "ru/api-reference/api-v1/mrp-stats-api-v1",
                         "pages": [
                           "ru/api-reference/api-v1/mrp-stats-api-v1/get-moscowroleplay-stats-playercount",
@@ -97,9 +108,11 @@
                 "pages": [
                   {
                     "group": "Документация API V2",
+                    "icon": "file-code",
                     "pages": [
                       {
                         "group": "MRP ER:LC API V2",
+                        "icon": "gamepad",
                         "root": "ru/api-reference/api-v2/mrp-erlc-api-v2",
                         "pages": [
                           "ru/api-reference/api-v2/mrp-erlc-api-v2/get-moscowroleplay-erlc-server",
@@ -108,10 +121,12 @@
                       },
                       {
                         "group": "MRP API Экономики V2",
+                        "icon": "coins",
                         "root": "ru/api-reference/api-v2/mrp-economy-api-v2",
                         "pages": [
                           {
                             "group": "GET-Эндпоинты API Экономики",
+                            "icon": "arrow-down",
                             "pages": [
                               "ru/api-reference/api-v2/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-economy",
                               "ru/api-reference/api-v2/mrp-civops-api-v2/mrp-get-endpoints-civops-api-v2/get-moscowroleplay-civops-users",
@@ -126,6 +141,7 @@
                           },
                           {
                             "group": "POST-Эндпоинты API Экономики",
+                            "icon": "arrow-up",
                             "pages": [
                               "ru/api-reference/api-v2/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-economy",
                               "ru/api-reference/api-v2/mrp-civops-api-v2/mrp-post-endpoints-civops-api-v2/post-moscowroleplay-civops-users",
@@ -140,6 +156,7 @@
                       },
                       {
                         "group": "MRP API Статистики V2",
+                        "icon": "chart-bar",
                         "root": "ru/api-reference/api-v2/mrp-stats-api-v2",
                         "pages": [
                           "ru/api-reference/api-v2/mrp-stats-api-v2/get-moscowroleplay-stats"
@@ -153,6 +170,7 @@
           },
           {
             "tab": "Другие Варианты Интеграции",
+            "icon": "puzzle-piece",
             "pages": [
               "ru/other/websocket-gateway",
               "ru/other/event-webhook"
