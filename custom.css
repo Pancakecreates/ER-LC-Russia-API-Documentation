@@ -232,14 +232,36 @@ footer img[src*="Banner-ERLC-Russia-Docs-System.svg"] {
 
 /* 1. Десктопная версия (#sidebar) */
 #sidebar a[href*="discord.gg/MoscowRus"] svg {
-  width: 20px !important;       /* Увеличил с 20px. Меняйте это значение */
-  height: 20px !important;      /* Увеличил с 20px. Меняйте это значение */
-  margin-right: 8px !important;  /* Отступ справа от иконки */
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px !important;
 }
 
 /* 2. Мобильная версия (#mobile-nav) */
 #mobile-nav a[href*="discord.gg/MoscowRus"] svg {
-  width: 20px !important;       /* Увеличил с 20px. Меняйте это значение */
-  height: 20px !important;      /* Увеличил с 20px. Меняйте это значение */
-  margin-right: 6px !important;  /* Отступ справа от иконки */
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 6px !important;
+}
+
+/* ============================================
+   СКРЫТИЕ КНОПКИ COPY PAGE ДЛЯ /RU И /EN
+   ============================================ */
+:root:has(#no-header-here) {
+  #header {
+    display: none !important;
+  }
+  .prose, 
+  main,
+  #content-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  .relative.max-w-screen-xl {
+    padding-top: 0 !important;
+  }
+}
+
+#no-header-here {
+  display: none !important;
 }
