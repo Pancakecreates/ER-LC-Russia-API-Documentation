@@ -40,7 +40,7 @@
         {
           "version": "API V1",
           "pages": [
-            "en/our-discord",
+            "en/api-reference/api-v1/our-discord",
             {
               "group": "API V1 Documentation",
               "icon": "file-code",
@@ -80,7 +80,7 @@
           "version": "API V2",
           "default": true,
           "pages": [
-            "en/our-discord",
+            "en/api-reference/api-v2/our-discord",
             {
               "group": "API V2 Documentation",
               "icon": "file-code",
