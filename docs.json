@@ -52,42 +52,42 @@
     {
       "source": "/en/our-discord",
       "destination": "/en",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/ru/our-discord",
       "destination": "/ru",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/en/other/our-discord",
-      "destination": "/en",
-      "permanent": false
+      "destination": "/en/other/websocket-gateway",
+      "permanent": true
     },
     {
       "source": "/ru/other/our-discord",
-      "destination": "/ru",
-      "permanent": false
+      "destination": "/ru/other/websocket-gateway",
+      "permanent": true
     },
     {
       "source": "/en/tutorials/our-discord",
-      "destination": "/en",
-      "permanent": false
+      "destination": "/en/tutorials/how-to-get-api-key",
+      "permanent": true
     },
     {
       "source": "/ru/tutorials/our-discord",
-      "destination": "/ru",
-      "permanent": false
+      "destination": "/ru/tutorials/how-to-get-api-key",
+      "permanent": true
     },
     {
       "source": "/en/docs-features/our-discord",
-      "destination": "/en",
-      "permanent": false
+      "destination": "/en/docs-features/mcp-server",
+      "permanent": true
     },
     {
       "source": "/ru/docs-features/our-discord",
-      "destination": "/ru",
-      "permanent": false
+      "destination": "/ru/docs-features/mcp-server",
+      "permanent": true
     }
   ]
 }
