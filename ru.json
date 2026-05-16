@@ -246,5 +246,6 @@
       "label": "Вход",
       "href": "https://erlcrussia.com/login"
     }
-  }
+  },
+  "default": true
 }
