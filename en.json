@@ -40,6 +40,7 @@
         {
           "version": "API V1",
           "pages": [
+            "en/our-discord",
             {
               "group": "API V1 Documentation",
               "icon": "file-code",
@@ -79,6 +80,7 @@
           "version": "API V2",
           "default": true,
           "pages": [
+            "en/our-discord",
             {
               "group": "API V2 Documentation",
               "icon": "file-code",
@@ -142,22 +144,43 @@
       "tab": "Other Integration Options",
       "icon": "puzzle-piece",
       "pages": [
-        "en/other/websocket-gateway",
-        "en/other/event-webhook"
+        "en/other/our-discord",
+        {
+          "group": "Integrations",
+          "icon": "plug",
+          "pages": [
+            "en/other/websocket-gateway",
+            "en/other/event-webhook"
+          ]
+        }
       ]
     },
     {
       "tab": "Tutorials",
       "icon": "book-open",
       "pages": [
-        "en/tutorials/how-to-get-api-key"
+        "en/tutorials/our-discord",
+        {
+          "group": "Quick Start",
+          "icon": "rocket",
+          "pages": [
+            "en/tutorials/how-to-get-api-key"
+          ]
+        }
       ]
     },
     {
       "tab": "Documentation Features",
       "icon": "clipboard-list",
       "pages": [
-        "en/docs-features/mcp-server"
+        "en/docs-features/our-discord",
+        {
+          "group": "Developer Tools",
+          "icon": "terminal",
+          "pages": [
+            "en/docs-features/mcp-server"
+          ]
+        }
       ]
     }
   ],
