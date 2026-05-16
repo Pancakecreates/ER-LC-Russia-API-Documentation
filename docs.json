@@ -58,6 +58,16 @@
       "source": "/ru/our-discord",
       "destination": "/ru",
       "permanent": false
+    },
+    {
+      "source": "/ru/index",
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/en/index",
+      "destination": "/en",
+      "permanent": false
     }
   ]
 }
