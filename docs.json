@@ -15,6 +15,15 @@
     "dark": "/favicon.png"
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Discord",
+          "href": "https://discord.gg/MoscowRus",
+          "icon": "discord"
+        }
+      ]
+    },
     "languages": [
       {
         "$ref": "./ru.json"
@@ -47,67 +56,5 @@
   },
   "appearance": {
     "default": "dark"
-  },
-  "redirects": [
-    {
-      "source": "/en/our-discord",
-      "destination": "/en",
-      "permanent": true
-    },
-    {
-      "source": "/ru/our-discord",
-      "destination": "/ru",
-      "permanent": true
-    },
-    {
-      "source": "/en/api-reference/api-v1/our-discord",
-      "destination": "/en/api-reference/api-v1/mrp-erlc-api-v1",
-      "permanent": true
-    },
-    {
-      "source": "/ru/api-reference/api-v1/our-discord",
-      "destination": "/ru/api-reference/api-v1/mrp-erlc-api-v1",
-      "permanent": true
-    },
-    {
-      "source": "/en/api-reference/api-v2/our-discord",
-      "destination": "/en/api-reference/api-v2/mrp-erlc-api-v2",
-      "permanent": true
-    },
-    {
-      "source": "/ru/api-reference/api-v2/our-discord",
-      "destination": "/ru/api-reference/api-v2/mrp-erlc-api-v2",
-      "permanent": true
-    },
-    {
-      "source": "/en/other/our-discord",
-      "destination": "/en/other/websocket-gateway",
-      "permanent": true
-    },
-    {
-      "source": "/ru/other/our-discord",
-      "destination": "/ru/other/websocket-gateway",
-      "permanent": true
-    },
-    {
-      "source": "/en/tutorials/our-discord",
-      "destination": "/en/tutorials/how-to-get-api-key",
-      "permanent": true
-    },
-    {
-      "source": "/ru/tutorials/our-discord",
-      "destination": "/ru/tutorials/how-to-get-api-key",
-      "permanent": true
-    },
-    {
-      "source": "/en/docs-features/our-discord",
-      "destination": "/en/docs-features/mcp-server",
-      "permanent": true
-    },
-    {
-      "source": "/ru/docs-features/our-discord",
-      "destination": "/ru/docs-features/mcp-server",
-      "permanent": true
-    }
-  ]
+  }
 }
