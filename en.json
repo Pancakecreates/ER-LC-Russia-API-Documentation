@@ -6,6 +6,7 @@
       "icon": "circle-info",
       "pages": [
         "en/index",
+        "en/our-discord",
         {
           "group": "Getting Started",
           "icon": "rocket",
@@ -152,5 +153,98 @@
         "en/tutorials/how-to-get-api-key"
       ]
     }
-  ]
+  ],
+  "footer": {
+    "socials": {
+      "discord": "https://discord.gg/MoscowRus",
+      "x": "https://x.com/erlcrussia",
+      "telegram": "https://t.me/erlcrussia",
+      "youtube": "https://www.youtube.com/@erlcrussia",
+      "instagram": "https://www.tiktok.com/@erlcrussia",
+      "linkedin": "https://www.roblox.com/share/g/688514761"
+    },
+    "links": [
+      {
+        "header": " ",
+        "items": [
+          {
+            "label": " ",
+            "href": "https://erlcrussia.com/privacy"
+          },
+          {
+            "label": " ",
+            "href": "https://erlcrussia.com/terms"
+          }
+        ]
+      },
+      {
+        "header": "ER:LC Russia",
+        "items": [
+          {
+            "label": "Wiki",
+            "href": "https://wiki.erlcrussia.com/"
+          },
+          {
+            "label": "Changelogs",
+            "href": "https://wiki.erlcrussia.com/changelogs"
+          },
+          {
+            "label": "Staff Rules",
+            "href": "https://wiki.erlcrussia.com/moscow-roleplay-staff-rules"
+          },
+          {
+            "label": "Start Playing",
+            "href": "https://erlcrussia.com/join/moscowroleplay"
+          },
+          {
+            "label": "API",
+            "href": "/"
+          },
+          {
+            "label": "Status",
+            "href": "https://status.erlcrussia.com"
+          }
+        ]
+      },
+      {
+        "header": "Products",
+        "items": [
+          {
+            "label": "Store",
+            "href": "https://erlcrussia.com/store"
+          },
+          {
+            "label": "Moscow RolePlay",
+            "href": "https://erlcrussia.com/moscowroleplay"
+          }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Privacy",
+            "href": "https://erlcrussia.com/privacy"
+          },
+          {
+            "label": "Terms",
+            "href": "https://erlcrussia.com/terms"
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "API Support",
+        "href": "https://discord.gg/MoscowRus"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Login",
+      "href": "https://erlcrussia.com/login"
+    }
+  }
 }

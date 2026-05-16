@@ -28,19 +28,6 @@
     "light": "/icons/Banner-ERLC-Russia-Docs-System.svg",
     "dark": "/icons/Banner-ERLC-Russia-Docs-System.svg"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "API Поддержка",
-        "href": "https://discord.gg/MoscowRus"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Вход",
-      "href": "https://erlcrussia.com/login"
-    }
-  },
   "contextual": {
     "options": [
       "copy",
@@ -51,86 +38,6 @@
       "mcp",
       "cursor",
       "vscode"
-    ]
-  },
-  "footer": {
-    "socials": {
-      "discord": "https://discord.gg/MoscowRus",
-      "x": "https://x.com/erlcrussia",
-      "telegram": "https://t.me/erlcrussia",
-      "youtube": "https://www.youtube.com/@erlcrussia",
-      "instagram": "https://www.tiktok.com/@erlcrussia",
-      "linkedin": "https://www.roblox.com/share/g/688514761"
-    },
-    "links": [
-      {
-        "header": " ",
-        "items": [
-          {
-            "label": " ",
-            "href": "https://erlcrussia.com/privacy"
-          },
-          {
-            "label": " ",
-            "href": "https://erlcrussia.com/terms"
-          }
-        ]
-      },
-      {
-        "header": "ER:LC Россия",
-        "items": [
-          {
-            "label": "Вики",
-            "href": "https://wiki.erlcrussia.com/"
-          },
-          {
-            "label": "История Изменений",
-            "href": "https://wiki.erlcrussia.com/changelogs"
-          },
-          {
-            "label": "Правила Персонала",
-            "href": "https://wiki.erlcrussia.com/moscow-roleplay-staff-rules"
-          },
-          {
-            "label": "Начать Играть",
-            "href": "https://erlcrussia.com/join/moscowroleplay"
-          },
-          {
-            "label": "API",
-            "href": "/"
-          },
-          {
-            "label": "Статус",
-            "href": "https://status.erlcrussia.com"
-          }
-        ]
-      },
-      {
-        "header": "Продукты",
-        "items": [
-          {
-            "label": "Магазин",
-            "href": "https://erlcrussia.com/store"
-          },
-          {
-            "label": "Moscow RolePlay",
-            "href": "https://erlcrussia.com/moscowroleplay"
-          }
-        ]
-      },
-      {
-        "header": "Документы",
-        "items": [
-          {
-            "label": "Приватность",
-            "href": "https://erlcrussia.com/privacy"
-          },
-          {
-            "label": "Условия",
-            "href": "https://erlcrussia.com/terms"
-          }
-        ]
-      }
     ]
   },
   "background": {
