@@ -61,22 +61,22 @@
     },
     {
       "source": "/en/api-reference/api-v1/our-discord",
-      "destination": "/en/api-reference/api-v1",
+      "destination": "/en/api-reference/api-v1/mrp-erlc-api-v1",
       "permanent": true
     },
     {
       "source": "/ru/api-reference/api-v1/our-discord",
-      "destination": "/ru/api-reference/api-v1",
+      "destination": "/ru/api-reference/api-v1/mrp-erlc-api-v1",
       "permanent": true
     },
     {
       "source": "/en/api-reference/api-v2/our-discord",
-      "destination": "/en/api-reference/api-v2",
+      "destination": "/en/api-reference/api-v2/mrp-erlc-api-v2",
       "permanent": true
     },
     {
       "source": "/ru/api-reference/api-v2/our-discord",
-      "destination": "/ru/api-reference/api-v2",
+      "destination": "/ru/api-reference/api-v2/mrp-erlc-api-v2",
       "permanent": true
     },
     {
