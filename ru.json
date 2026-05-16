@@ -270,5 +270,14 @@
       "label": "Вход",
       "href": "https://erlcrussia.com/login"
     }
+  },
+  "global": {
+    "anchors": [
+      {
+        "anchor": "Наш Discord",
+        "icon": "discord",
+        "href": "https://discord.gg/MoscowRus"
+      }
+    ]
   }
 }

@@ -15,15 +15,6 @@
     "dark": "/favicon.png"
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Discord",
-          "href": "https://discord.gg/MoscowRus",
-          "icon": "discord"
-        }
-      ]
-    },
     "languages": [
       {
         "$ref": "./ru.json"
