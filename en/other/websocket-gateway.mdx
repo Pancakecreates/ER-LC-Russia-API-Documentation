@@ -10,7 +10,7 @@ The WebSocket Gateway allows you to receive ER:LC server data in real time witho
 
 When connecting to the HTTP endpoint (not WebSocket), a `426` error with code `5020` is returned.
 
-### Quick Start
+## Quick Start
 
 ```js
 const ws = new WebSocket('wss://api.erlcrussia.com/v2/gateway');
@@ -25,7 +25,7 @@ ws.on('message', (data) => {
 });
 ```
 
-### Connection Lifecycle
+## Connection Lifecycle
 
 1. **Connect** — establish a WebSocket connection
 2. **Authenticate** — send `auth` with your token
@@ -51,7 +51,7 @@ The first message that must be sent after connecting. Without authentication, al
 }
 ```
 
-#### Success Response
+### Response Upon Success
 
 ```json
 {
@@ -65,7 +65,7 @@ After successful authentication, a cache snapshot is automatically sent (if avai
 
 ---
 
-### Channel Subscription
+## Channel Subscription
 
 Subscribe to one or more data channels.
 
@@ -85,7 +85,7 @@ Single channel via `channel` field is also supported:
 }
 ```
 
-#### Response
+### Response
 
 ```json
 {
@@ -94,28 +94,7 @@ Single channel via `channel` field is also supported:
 }
 ```
 
-#### Subscription Denied
-
-If you don't have access to a specific channel:
-
-```json
-{
-  "code": 5130,
-  "channel": "Staff",
-  "message": "Access to channel \"Staff\" is forbidden"
-}
-```
-
-#### Response
-
-```json
-{
-  "code": 5131,
-  "channels": ["Server", "Players", "Queue"]
-}
-```
-
-#### Subscription Denied
+### Subscription Denied
 
 If you don't have access to a specific channel:
 
@@ -129,7 +108,7 @@ If you don't have access to a specific channel:
 
 ---
 
-### Channel Unsubscription
+## Channel Unsubscription
 
 Unsubscribe from channels you no longer need.
 
@@ -140,7 +119,7 @@ Unsubscribe from channels you no longer need.
 }
 ```
 
-#### Response
+### Response
 
 ```json
 {
@@ -151,7 +130,7 @@ Unsubscribe from channels you no longer need.
 
 ---
 
-### Cache Retrieval
+## Cache Retrieval
 
 Request the current cache snapshot for your subscriptions.
 
@@ -165,7 +144,7 @@ Returns data only for channels you are subscribed to.
 
 ---
 
-### Ping
+## Ping
 
 Connection check.
 
@@ -175,7 +154,7 @@ Connection check.
 }
 ```
 
-#### Response
+### Response
 
 ```json
 {
@@ -382,6 +361,17 @@ If the cache is unavailable:
 ```json
 {
   "code": 5133,
+  "timestamp": 1747267200000
+}
+```
+
+### Empty Snapshot
+
+If the cache exists but there is no data for your subscriptions:
+
+```json
+{
+  "code": 5134,
   "timestamp": 1747267200000
 }
 ```

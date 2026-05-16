@@ -53,7 +53,7 @@ All errors are returned in JSON format with `code` and `message` fields.
     | `5037` | Invalid Signature | Invalid request signature |
   </Accordion>
 
-  <Accordion title="WebSocket Gateway Errors (5101–5133)">
+  <Accordion title="WebSocket Gateway Errors (5101–5134)">
     | Code | Description | Meaning |
     | --- | -------- | ------- |
     | `5101` | Invalid Message Format | Check the JSON format and `action` field |
@@ -69,6 +69,7 @@ All errors are returned in JSON format with `code` and `message` fields.
     | `5131` | Subscribed | Informational code, no action required |
     | `5132` | Unsubscribed | Informational code, no action required |
     | `5133` | Cache Empty | Data not yet loaded, please wait |
+    | `5134` | Empty Snapshot | Cache exists but no data for your subscriptions |
   </Accordion>
 
   <Accordion title="Economy API Errors (6000–6021)">
