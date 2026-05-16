@@ -152,6 +152,13 @@
       "pages": [
         "ru/tutorials/how-to-get-api-key"
       ]
+    },
+    {
+      "tab": "Возможности Документации",
+      "icon": "clipboard-list",
+      "pages": [
+        "ru/docs-features/mcp-server"
+      ]
     }
   ],
   "footer": {
