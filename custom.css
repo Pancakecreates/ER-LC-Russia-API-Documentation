@@ -206,68 +206,20 @@ footer img[src*="Banner-ERLC-Russia-Docs-System.svg"] {
 }
 
 /* ============================================
-   СТРАНИЦА INTRODUCTION - СКРЫТЬ ЭЛЕМЕНТЫ
+   СТРАНИЦА INDEX - СКРЫТЬ ЭЛЕМЕНТЫ
    ============================================ */
 
-body[data-path*="introduction"] .eyebrow.h-5.text-primary,
-body[data-path*="introduction"] .eyebrow.h-5.text-primary-light,
-body[data-path*="introduction"] div.eyebrow,
-body[data-path*="introduction"] [class*="eyebrow"],
-html[data-path*="introduction"] .eyebrow.h-5.text-primary,
-html[data-path*="introduction"] .eyebrow.h-5.text-primary-light,
-html[data-path*="introduction"] div.eyebrow,
-html[data-path*="introduction"] [class*="eyebrow"] {
-  display: none !important;
-}
-
-body[data-path*="introduction"] .eyebrow:contains("Начало"),
-body[data-path*="introduction"] div[class*="eyebrow"]:contains("Начало"),
-html[data-path*="introduction"] .eyebrow:contains("Начало"),
-html[data-path*="introduction"] div[class*="eyebrow"]:contains("Начало") {
-  display: none !important;
-}
-
-body[data-path*="introduction"] #page-context-menu-button,
-body[data-path*="introduction"] button[id*="page-context-menu"],
-body[data-path*="introduction"] button[aria-label*="Копировать страницу"],
-body[data-path*="introduction"] button:has(span:contains("Копировать страницу")),
-html[data-path*="introduction"] #page-context-menu-button,
-html[data-path*="introduction"] button[id*="page-context-menu"],
-html[data-path*="introduction"] button[aria-label*="Копировать страницу"],
-html[data-path*="introduction"] button:has(span:contains("Копировать страницу")) {
-  display: none !important;
-}
-
-body[data-path*="introduction"] button[id^="radix-"],
-body[data-path*="introduction"] button[aria-label*="Дополнительные действия"],
-body[data-path*="introduction"] button:has(svg[viewBox="0 -9 3 24"]),
-html[data-path*="introduction"] button[id^="radix-"],
-html[data-path*="introduction"] button[aria-label*="Дополнительные действия"],
-html[data-path*="introduction"] button:has(svg[viewBox="0 -9 3 24"]) {
-  display: none !important;
-}
-
-body[data-path="/"] .eyebrow,
-body[data-path="/"] #page-context-menu-button,
-body[data-path="/"] button[id^="radix-"],
-body[data-path="introduction"] .eyebrow,
-body[data-path="introduction"] #page-context-menu-button,
-body[data-path="introduction"] button[id^="radix-"] {
-  display: none !important;
-}
-
-body:has(h1:contains("ER:LC Россия API")) .eyebrow,
-body:has(h1:contains("ER:LC Россия API")) #page-context-menu-button,
-body:has(h1:contains("ER:LC Россия API")) button[id^="radix-"] {
-  display: none !important;
-}
-
 body:has(img[alt*="ER:LC Россия API"]) .eyebrow,
+body:has(img[alt*="ER:LC Россия API"]) [class*="eyebrow"],
 body:has(img[alt*="ER:LC Россия API"]) #page-context-menu-button,
-body:has(img[alt*="ER:LC Россия API"]) button[id^="radix-"] {
+body:has(img[alt*="ER:LC Россия API"]) button[id*="page-context-menu"],
+body:has(img[alt*="ER:LC Россия API"]) button[aria-label*="Копировать страницу"],
+body:has(img[alt*="ER:LC Россия API"]) button[id^="radix-"],
+body:has(img[alt*="ER:LC Россия API"]) button[aria-label*="Дополнительные действия"],
+body:has(img[alt*="ER:LC Россия API"]) button:has(svg[viewBox="0 -9 3 24"]),
+body:has(img[alt*="ER:LC Россия API"]) #page-title { /* Скрываем ТОЛЬКО дефолтный ID заголовка Mintlify */
   display: none !important;
 }
-
 /* ============================================
    СКРЫТЬ ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
    ============================================ */
@@ -288,4 +240,40 @@ body:has(img[alt*="ER:LC Россия API"]) button[id^="radix-"] {
   }
 }
 
+/* ============================================
+   САЙДБАР - ИКОНКА DISCORD (ТОЛЬКО ДЕСКТОП 1024px+)
+   ============================================ */
 
+#sidebar a[href*="discord.gg/MoscowRus"] div:first-child {
+  background: transparent !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-right: 8px !important;
+}
+
+#sidebar a[href*="discord.gg/MoscowRus"] svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 8px !important;
+}
+
+/* 2. Стили для мобильной версии (#mobile-nav) */
+#mobile-nav a[href*="discord.gg/MoscowRus"] div:first-child {
+  background: transparent !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-right: 8px !important;
+  
+  --tw-ring-shadow: none !important;
+  box-shadow: none !important; 
+}
+
+#mobile-nav a[href*="discord.gg/MoscowRus"] svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 6px !important;
+}
