@@ -438,7 +438,7 @@ paths:
                   summary: Отсутствует поле command.
                   value:
                     code: 5005
-                    message: MissingCommand
+                    message: Missing Command
         '401':
           $ref: '#/components/responses/UnauthorizedMissingOrInvalidToken'
         '403':
@@ -454,7 +454,7 @@ paths:
                   summary: Очередь команд заполнена.
                   value:
                     code: 5015
-                    message: CommandQueueFull
+                    message: Command Queue Full
         '500':
           $ref: '#/components/responses/InternalServerError'
 
