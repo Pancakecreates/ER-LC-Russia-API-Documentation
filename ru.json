@@ -40,7 +40,7 @@
         {
           "version": "API V1",
           "pages": [
-            "ru/our-discord",
+            "ru/api-reference/api-v1/our-discord",
             {
               "group": "Документация API V1",
               "icon": "file-code",
@@ -80,7 +80,7 @@
           "version": "API V2",
           "default": true,
           "pages": [
-            "ru/our-discord",
+            "ru/api-reference/api-v2/our-discord",
             {
               "group": "Документация API V2",
               "icon": "file-code",
