@@ -206,19 +206,19 @@
         "items": [
           {
             "label": "Вики",
-            "href": "https://wiki.erlcrussia.com/"
+            "href": "https://wiki.erlcrussia.com/ru"
           },
           {
             "label": "История Изменений",
-            "href": "https://wiki.erlcrussia.com/changelogs"
+            "href": "https://wiki.erlcrussia.com/ru/changelogs"
           },
           {
             "label": "Правила Персонала",
-            "href": "https://wiki.erlcrussia.com/moscow-roleplay-staff-rules"
+            "href": "https://wiki.erlcrussia.com/ru/staff-rules"
           },
           {
             "label": "Начать Играть",
-            "href": "https://erlcrussia.com/join/moscowroleplay"
+            "href": "https://wiki.erlcrussia.com/ru/guides"
           },
           {
             "label": "API",
